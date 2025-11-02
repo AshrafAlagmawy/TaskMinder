@@ -2,10 +2,16 @@ import { Routes } from '@angular/router';
 import { Dashboard } from './features/dashboard/dashboard';
 import { Projects } from './features/projects/projects';
 import { Calendar } from './features/calendar/calendar';
+import { Tasks } from './features/tasks/tasks';
 
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: 'tasks',
+    pathMatch: 'full',
+  },
+  {
+    path: 'dashboard',
     component: Dashboard,
     pathMatch: 'full',
   },
@@ -16,7 +22,7 @@ export const routes: Routes = [
   },
   {
     path: 'tasks',
-    component: Projects,
+    component: Tasks,
     pathMatch: 'full',
   },
   {

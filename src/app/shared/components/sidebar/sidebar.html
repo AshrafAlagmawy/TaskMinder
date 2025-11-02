@@ -1,5 +1,5 @@
 <div class="sidebar text-black d-flex flex-column vh-100">
-  <div class="logo p-3 d-flex align-items-center gap-2 mb-3">
+  <div routerLink="/" class="logo p-3 d-flex align-items-center gap-2 mb-3">
     <img src="/assets/icons/Rectangle 11 (Stroke).png" alt="TaskMinder Logo" />
     <span class="fs-5 fw-semibold">TaskMinder.</span>
   </div>
@@ -7,9 +7,10 @@
   <!-- Navigation -->
   <nav class="nav flex-column flex-grow-1 px-2">
     <a
-      routerLink="/"
+      routerLink="dashboard"
       routerLinkActive="active"
-      class="nav-link rounded mb-1 d-flex align-items-center gap-2"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="nav-link rounded mb-3 d-flex align-items-center gap-2"
     >
       <img src="./assets/icons/Sidebar link icon.png" alt="Projects Icon" />
       <span>Dashboard</span>
@@ -18,7 +19,7 @@
     <a
       routerLink="/projects"
       routerLinkActive="active"
-      class="nav-link rounded mb-1 d-flex align-items-center gap-2"
+      class="nav-link rounded mb-3 d-flex align-items-center gap-2"
     >
       <img src="./assets/icons/Sidebar link icon (1).png" alt="Projects Icon" />
       <span>Projects</span>
@@ -27,7 +28,7 @@
     <a
       routerLink="/tasks"
       routerLinkActive="active"
-      class="nav-link rounded mb-1 d-flex align-items-center gap-2"
+      class="nav-link rounded mb-3 d-flex align-items-center gap-2"
     >
       <img src="./assets/icons/Sidebar link icon (2).png" alt="Projects Icon" />
       <span>Tasks</span>
@@ -36,7 +37,7 @@
     <a
       routerLink="/calendar"
       routerLinkActive="active"
-      class="nav-link rounded mb-1 d-flex align-items-center gap-2"
+      class="nav-link rounded mb-3 d-flex align-items-center gap-2"
     >
       <img src="./assets/icons/Sidebar link icon (3).png" alt="Projects Icon" />
       <span>Calendar</span>
