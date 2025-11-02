@@ -1,0 +1,53 @@
+<div class="sidebar text-black d-flex flex-column vh-100">
+  <div class="logo p-3 d-flex align-items-center gap-2 mb-3">
+    <img src="/assets/icons/Rectangle 11 (Stroke).png" alt="TaskMinder Logo" />
+    <span class="fs-5 fw-semibold">TaskMinder.</span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav flex-column flex-grow-1 px-2">
+    <a
+      routerLink="/dashboard"
+      routerLinkActive="active"
+      class="nav-link rounded mb-1 d-flex align-items-center gap-2"
+    >
+      <i class="bi bi-grid"></i>
+      <span>Dashboard</span>
+    </a>
+
+    <a
+      routerLink="/projects"
+      routerLinkActive="active"
+      class="nav-link rounded mb-1 d-flex align-items-center gap-2"
+    >
+      <i class="bi bi-folder"></i>
+      <span>Projects</span>
+    </a>
+
+    <a
+      routerLink="/tasks"
+      routerLinkActive="active"
+      class="nav-link rounded mb-1 d-flex align-items-center gap-2"
+    >
+      <i class="bi bi-list-task"></i>
+      <span>Tasks</span>
+    </a>
+
+    <a
+      routerLink="/calendar"
+      routerLinkActive="active"
+      class="nav-link rounded mb-1 d-flex align-items-center gap-2"
+    >
+      <i class="bi bi-calendar"></i>
+      <span>Calendar</span>
+    </a>
+  </nav>
+
+  <!-- Logout -->
+  <div class="p-3">
+    <button class="btn btn-link text-decoration-none d-flex align-items-center gap-2 w-100">
+      <i class="bi bi-box-arrow-right"></i>
+      <span>Log out</span>
+    </button>
+  </div>
+</div>

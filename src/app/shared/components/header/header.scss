@@ -1,0 +1,32 @@
+.header {
+  .input-group-text {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+  }
+
+  .form-control {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+
+    &:focus {
+      box-shadow: none;
+      background-color: #f8f9fa;
+    }
+  }
+
+  .btn-light {
+    border: none;
+
+    &:hover {
+      background-color: #f8f9fa;
+    }
+  }
+
+  img {
+    transition: border-color 0.2s;
+
+    &:hover {
+      border-color: #0d6efd !important;
+    }
+  }
+}

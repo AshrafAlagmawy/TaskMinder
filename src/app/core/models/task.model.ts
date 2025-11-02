@@ -14,5 +14,4 @@ export interface Task {
   assigned: User;
   createdAt: Date;
   updatedAt: Date;
-  finishedAt?: Date; // Optional sets only when the task is finished - possible to remove it for un need
 }
