@@ -1,1 +1,227 @@
-<p>task-board works!</p>
+<div class="min-h-screen bg-gray-50 p-8">
+  <!-- Header -->
+  <div class="flex items-center justify-between mb-8">
+    <h1 class="text-3xl font-poppins font-bold text-gray-900">Tasks</h1>
+
+    <div class="flex items-center gap-3">
+      <!-- Action Buttons -->
+      <button
+        class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
+        aria-label="Undo"
+      >
+        <img src="./assets/icons/Frame (3).svg" alt="Back icon" />
+      </button>
+
+      <button
+        class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
+        aria-label="Redo"
+      >
+        <img src="./assets/icons/Frame (2).svg" alt="Next icon" />
+      </button>
+
+      <button
+        class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
+        aria-label="Share"
+      >
+        <img src="./assets/icons/Frame (1).svg" alt="People icon" />
+      </button>
+
+      <button
+        class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
+        aria-label="Filter"
+      >
+        <img src="./assets/icons/Frame.svg" alt="Settings icon" />
+      </button>
+
+      <!-- New Task Button -->
+      <button
+        (click)="openModal()"
+        class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-sm"
+      >
+        <span>New task</span>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 4v16m8-8H4"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Three Columns Layout (Todo / In Progress / Done) -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- TO DO COLUMN -->
+    <div class="bg-blue-50 rounded-lg p-4">
+      <div class="flex items-center gap-2 mb-4">
+        <img src="./assets/icons/Card status icon (1).svg" alt="To do Icon" />
+        <h2 class="text-lg font-semibold text-gray-800">To do</h2>
+      </div>
+
+      <div class="space-y-3">
+        <!-- Task Card 1 -->
+        <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-3">
+            <img src="https://i.pravatar.cc/150?img=1" alt="User" class="w-10 h-10 rounded-full" />
+            <div class="flex gap-2">
+              <button class="p-1.5 hover:bg-gray-100 rounded transition-colors">
+                <img src="./assets/icons/edit.svg" alt="Edit Icon" />
+              </button>
+              <button class="p-1.5 hover:bg-red-50 rounded transition-colors">
+                <img src="./assets/icons/delete.svg" alt="Delete Icon" />
+              </button>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+
+        <!-- Task Card 2 -->
+        <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-3">
+            <img src="https://i.pravatar.cc/150?img=2" alt="User" class="w-10 h-10 rounded-full" />
+            <div class="flex gap-2">
+              <button class="p-1.5 hover:bg-gray-100 rounded transition-colors">
+                <img src="./assets/icons/edit.svg" alt="Edit Icon" />
+              </button>
+              <button class="p-1.5 hover:bg-red-50 rounded transition-colors">
+                <img src="./assets/icons/delete.svg" alt="Delete Icon" />
+              </button>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- IN PROGRESS COLUMN -->
+    <div class="bg-orange-50 rounded-lg p-4">
+      <div class="flex items-center gap-2 mb-4">
+        <img src="../../../../../assets/icons/Card status icon (2).svg" alt="In Progress Icon" />
+        <h2 class="text-lg font-semibold text-amber-800">In progress</h2>
+      </div>
+
+      <div class="space-y-3">
+        <!-- Task Card -->
+        <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-3">
+            <img src="https://i.pravatar.cc/150?img=3" alt="User" class="w-10 h-10 rounded-full" />
+            <div class="flex gap-2">
+              <button class="p-1.5 hover:bg-gray-100 rounded transition-colors">
+                <img src="./assets/icons/edit.svg" alt="Edit Icon" />
+              </button>
+              <button class="p-1.5 hover:bg-red-50 rounded transition-colors">
+                <img src="./assets/icons/delete.svg" alt="Delete Icon" />
+              </button>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+
+        <!-- Task Card 2 -->
+        <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-3">
+            <img src="https://i.pravatar.cc/150?img=4" alt="User" class="w-10 h-10 rounded-full" />
+            <div class="flex gap-2">
+              <button class="p-1.5 hover:bg-gray-100 rounded transition-colors">
+                <img src="./assets/icons/edit.svg" alt="Edit Icon" />
+              </button>
+              <button class="p-1.5 hover:bg-red-50 rounded transition-colors">
+                <img src="./assets/icons/delete.svg" alt="Delete Icon" />
+              </button>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- DONE COLUMN -->
+    <div class="bg-red-50 rounded-lg p-4">
+      <div class="flex items-center gap-2 mb-4">
+        <img src="./assets/icons/Card status icon.svg" alt="Done Icon" />
+        <h2 class="text-lg font-semibold text-green-800">Done</h2>
+      </div>
+
+      <div class="space-y-3">
+        <!-- Task Card -->
+        <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-3">
+            <img src="https://i.pravatar.cc/150?img=5" alt="User" class="w-10 h-10 rounded-full" />
+            <div class="flex gap-2">
+              <button class="p-1.5 hover:bg-gray-100 rounded transition-colors">
+                <img src="./assets/icons/edit.svg" alt="Edit Icon" />
+              </button>
+              <button class="p-1.5 hover:bg-red-50 rounded transition-colors">
+                <img src="./assets/icons/delete.svg" alt="Delete Icon" />
+              </button>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+
+        <!-- Task Card 2 -->
+        <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-start justify-between mb-3">
+            <img src="https://i.pravatar.cc/150?img=6" alt="User" class="w-10 h-10 rounded-full" />
+            <div class="flex gap-2">
+              <button class="p-1.5 hover:bg-gray-100 rounded transition-colors">
+                <img src="./assets/icons/edit.svg" alt="Edit Icon" />
+              </button>
+              <button class="p-1.5 hover:bg-red-50 rounded transition-colors">
+                <img src="./assets/icons/delete.svg" alt="Delete Icon" />
+              </button>
+            </div>
+          </div>
+          <p class="text-sm text-gray-600">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+@if(showModal){
+<div
+  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+  (click)="closeModal()"
+>
+  <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl" (click)="$event.stopPropagation()">
+    <div class="flex items-center justify-between p-6 border-b">
+      <h2 class="text-2xl font-bold">New Task</h2>
+      <button (click)="closeModal()" class="p-2 hover:bg-gray-100 rounded-lg">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+    </div>
+    <div class="p-6">
+      <p class="text-gray-600">Modal content in development</p>
+    </div>
+  </div>
+</div>
+}

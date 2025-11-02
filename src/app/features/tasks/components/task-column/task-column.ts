@@ -6,6 +6,4 @@ import { Component } from '@angular/core';
   templateUrl: './task-column.html',
   styleUrl: './task-column.scss',
 })
-export class TaskColumn {
-
-}
+export class TaskColumn {}
