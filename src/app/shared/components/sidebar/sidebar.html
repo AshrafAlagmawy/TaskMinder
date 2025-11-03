@@ -1,19 +1,32 @@
-<div class="sidebar text-black d-flex flex-column vh-100">
-  <div routerLink="/" class="logo p-3 d-flex align-items-center gap-2 mb-3">
+<!-- Sidebar -->
+<div
+  class="sidebar text-black d-flex flex-column vh-100 position-fixed top-0 start-0 bg-white shadow-sm transition-all"
+  [class.sidebar-collapsed]="isSidebarCollapsed"
+>
+  <!-- Logo -->
+  <div routerLink="/" class="logo p-3 d-flex align-items-center gap-2 mb-3 border-bottom">
     <img src="/assets/icons/Rectangle 11 (Stroke).png" alt="TaskMinder Logo" />
-    <span class="fs-5 fw-semibold">TaskMinder.</span>
+    <span class="fs-5 fw-semibold d-none d-md-inline">TaskMinder.</span>
   </div>
 
-  <!-- Navigation -->
+  <!-- Toggle Button -->
+  <button
+    class="btn btn-light position-fixed top-0 start-0 m-3 d-md-none z-3"
+    (click)="isSidebarCollapsed = !isSidebarCollapsed"
+  >
+    <i class="bi bi-list fs-4"></i>
+  </button>
+
+  <!-- Navigation Tabs -->
   <nav class="nav flex-column flex-grow-1 px-2">
     <a
-      routerLink="dashboard"
+      routerLink="/dashboard"
       routerLinkActive="active"
       [routerLinkActiveOptions]="{ exact: true }"
       class="nav-link rounded mb-3 d-flex align-items-center gap-2"
     >
       <img src="./assets/icons/Sidebar link icon.png" alt="Projects Icon" />
-      <span>Dashboard</span>
+      <span class="d-none d-md-inline">Dashboard</span>
     </a>
 
     <a
@@ -22,7 +35,7 @@
       class="nav-link rounded mb-3 d-flex align-items-center gap-2"
     >
       <img src="./assets/icons/Sidebar link icon (1).png" alt="Projects Icon" />
-      <span>Projects</span>
+      <span class="d-none d-md-inline">Projects</span>
     </a>
 
     <a
@@ -31,7 +44,7 @@
       class="nav-link rounded mb-3 d-flex align-items-center gap-2"
     >
       <img src="./assets/icons/Sidebar link icon (2).png" alt="Projects Icon" />
-      <span>Tasks</span>
+      <span class="d-none d-md-inline">Tasks</span>
     </a>
 
     <a
@@ -40,15 +53,15 @@
       class="nav-link rounded mb-3 d-flex align-items-center gap-2"
     >
       <img src="./assets/icons/Sidebar link icon (3).png" alt="Projects Icon" />
-      <span>Calendar</span>
+      <span class="d-none d-md-inline">Calendar</span>
     </a>
   </nav>
 
   <!-- Logout -->
-  <div class="p-3">
+  <div class="p-3 border-top">
     <button class="btn logout btn-link text-decoration-none d-flex align-items-center gap-2 w-100">
-      <img src="./assets/icons/Frame.png" alt="Projects Icon" />
-      <span>Log out</span>
+      <img src="./assets/icons/Frame.png" alt="Logout Icon" />
+      <span class="d-none d-md-inline">Log out</span>
     </button>
   </div>
 </div>
