@@ -3,6 +3,7 @@ import { Dashboard } from './features/dashboard/dashboard';
 import { Projects } from './features/projects/projects';
 import { Calendar } from './features/calendar/calendar';
 import { Tasks } from './features/tasks/tasks';
+import { NotFound } from './shared/components/not-found/not-found';
 
 export const routes: Routes = [
   {
@@ -29,5 +30,9 @@ export const routes: Routes = [
     path: 'calendar',
     component: Calendar,
     pathMatch: 'full',
+  },
+  {
+    path: '**',
+    component: NotFound,
   },
 ];

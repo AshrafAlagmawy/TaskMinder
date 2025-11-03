@@ -1,0 +1,30 @@
+<div class="min-h-screen bg-gray-50 p-8">
+  <div class="flex items-center justify-center" style="height: calc(100vh - 120px)">
+    <div class="max-w-md w-full text-center">
+      <div class="mb-8">
+        <h1 class="text-9xl font-extrabold text-gray-800">404</h1>
+        <div class="text-6xl font-bold text-gray-400 -mt-4">
+          <span class="inline-block animate-pulse">_</span>
+        </div>
+      </div>
+
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">Page Not Found</h2>
+      <p class="text-gray-600 mb-8">The page you're looking for doesn't exist or has been moved.</p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button
+          (click)="goToTasks()"
+          class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md hover:shadow-lg"
+        >
+          Go to Tasks
+        </button>
+        <button
+          (click)="goBack()"
+          class="px-6 py-3 bg-gray-200 text-gray-800 font-semibold rounded-lg hover:bg-gray-300 transition-colors duration-200"
+        >
+          Go Back
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
