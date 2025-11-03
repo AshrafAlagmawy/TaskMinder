@@ -59,141 +59,99 @@
         <img src="./assets/icons/Card status icon (1).svg" alt="To do Icon" />
         <h2 class="text-lg font-semibold text-gray-800">To do</h2>
       </div>
-
       <div class="space-y-3">
-        <!-- Task Card 1 -->
+        @for (task of toDoTasks; track task.id) {
         <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
           <div class="flex items-start justify-between mb-3">
-            <img src="https://i.pravatar.cc/150?img=1" alt="User" class="w-10 h-10 rounded-full" />
+            <img [src]="task.assigneeImage" alt="User" class="w-10 h-10 rounded-full" />
             <div class="flex gap-2">
-              <button class="p-1.5 hover:bg-gray-100 rounded transition-colors">
+              <button
+                (click)="openModal(task)"
+                class="p-1.5 hover:bg-gray-100 rounded transition-colors"
+              >
                 <img src="./assets/icons/edit.svg" alt="Edit Icon" />
               </button>
-              <button class="p-1.5 hover:bg-red-50 rounded transition-colors">
+              <button
+                (click)="deleteTask(task.id)"
+                class="p-1.5 hover:bg-red-50 rounded transition-colors"
+              >
                 <img src="./assets/icons/delete.svg" alt="Delete Icon" />
               </button>
             </div>
           </div>
-          <p class="text-sm text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
-          </p>
+          <p class="text-sm text-gray-600">{{ task.description }}</p>
         </div>
-
-        <!-- Task Card 2 -->
-        <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
-          <div class="flex items-start justify-between mb-3">
-            <img src="https://i.pravatar.cc/150?img=2" alt="User" class="w-10 h-10 rounded-full" />
-            <div class="flex gap-2">
-              <button class="p-1.5 hover:bg-gray-100 rounded transition-colors">
-                <img src="./assets/icons/edit.svg" alt="Edit Icon" />
-              </button>
-              <button class="p-1.5 hover:bg-red-50 rounded transition-colors">
-                <img src="./assets/icons/delete.svg" alt="Delete Icon" />
-              </button>
-            </div>
-          </div>
-          <p class="text-sm text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
+        } @empty {
+        <div class="text-center p-4 text-gray-400 italic">No tasks yet</div>
+        }
       </div>
     </div>
 
     <!-- IN PROGRESS COLUMN -->
     <div class="bg-orange-50 rounded-lg p-4">
       <div class="flex items-center gap-2 mb-4">
-        <img src="../../../../../assets/icons/Card status icon (2).svg" alt="In Progress Icon" />
+        <img src="./assets/icons/Card status icon (2).svg" alt="In Progress Icon" />
         <h2 class="text-lg font-semibold text-amber-800">In progress</h2>
       </div>
-
       <div class="space-y-3">
-        <!-- Task Card -->
+        @for (task of inProgressTasks; track task.id) {
         <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
           <div class="flex items-start justify-between mb-3">
-            <img src="https://i.pravatar.cc/150?img=3" alt="User" class="w-10 h-10 rounded-full" />
+            <img [src]="task.assigneeImage" alt="User" class="w-10 h-10 rounded-full" />
             <div class="flex gap-2">
-              <button class="p-1.5 hover:bg-gray-100 rounded transition-colors">
+              <button
+                (click)="openModal(task)"
+                class="p-1.5 hover:bg-gray-100 rounded transition-colors"
+              >
                 <img src="./assets/icons/edit.svg" alt="Edit Icon" />
               </button>
-              <button class="p-1.5 hover:bg-red-50 rounded transition-colors">
+              <button
+                (click)="deleteTask(task.id)"
+                class="p-1.5 hover:bg-red-50 rounded transition-colors"
+              >
                 <img src="./assets/icons/delete.svg" alt="Delete Icon" />
               </button>
             </div>
           </div>
-          <p class="text-sm text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
-          </p>
+          <p class="text-sm text-gray-600">{{ task.description }}</p>
         </div>
-
-        <!-- Task Card 2 -->
-        <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
-          <div class="flex items-start justify-between mb-3">
-            <img src="https://i.pravatar.cc/150?img=4" alt="User" class="w-10 h-10 rounded-full" />
-            <div class="flex gap-2">
-              <button class="p-1.5 hover:bg-gray-100 rounded transition-colors">
-                <img src="./assets/icons/edit.svg" alt="Edit Icon" />
-              </button>
-              <button class="p-1.5 hover:bg-red-50 rounded transition-colors">
-                <img src="./assets/icons/delete.svg" alt="Delete Icon" />
-              </button>
-            </div>
-          </div>
-          <p class="text-sm text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
+        } @empty {
+        <div class="text-center p-4 text-gray-400 italic">No tasks in progress</div>
+        }
       </div>
     </div>
 
     <!-- DONE COLUMN -->
-    <div class="bg-red-50 rounded-lg p-4">
+    <div class="bg-green-50 rounded-lg p-4">
       <div class="flex items-center gap-2 mb-4">
         <img src="./assets/icons/Card status icon.svg" alt="Done Icon" />
         <h2 class="text-lg font-semibold text-green-800">Done</h2>
       </div>
-
       <div class="space-y-3">
-        <!-- Task Card -->
+        @for (task of doneTasks; track task.id) {
         <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
           <div class="flex items-start justify-between mb-3">
-            <img src="https://i.pravatar.cc/150?img=5" alt="User" class="w-10 h-10 rounded-full" />
+            <img [src]="task.assigneeImage" alt="User" class="w-10 h-10 rounded-full" />
             <div class="flex gap-2">
-              <button class="p-1.5 hover:bg-gray-100 rounded transition-colors">
+              <button
+                (click)="openModal(task)"
+                class="p-1.5 hover:bg-gray-100 rounded transition-colors"
+              >
                 <img src="./assets/icons/edit.svg" alt="Edit Icon" />
               </button>
-              <button class="p-1.5 hover:bg-red-50 rounded transition-colors">
+              <button
+                (click)="deleteTask(task.id)"
+                class="p-1.5 hover:bg-red-50 rounded transition-colors"
+              >
                 <img src="./assets/icons/delete.svg" alt="Delete Icon" />
               </button>
             </div>
           </div>
-          <p class="text-sm text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
-          </p>
+          <p class="text-sm text-gray-600">{{ task.description }}</p>
         </div>
-
-        <!-- Task Card 2 -->
-        <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
-          <div class="flex items-start justify-between mb-3">
-            <img src="https://i.pravatar.cc/150?img=6" alt="User" class="w-10 h-10 rounded-full" />
-            <div class="flex gap-2">
-              <button class="p-1.5 hover:bg-gray-100 rounded transition-colors">
-                <img src="./assets/icons/edit.svg" alt="Edit Icon" />
-              </button>
-              <button class="p-1.5 hover:bg-red-50 rounded transition-colors">
-                <img src="./assets/icons/delete.svg" alt="Delete Icon" />
-              </button>
-            </div>
-          </div>
-          <p class="text-sm text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua.
-          </p>
-        </div>
+        } @empty {
+        <div class="text-center p-4 text-gray-400 italic">All tasks done 🎉</div>
+        }
       </div>
     </div>
   </div>
@@ -220,7 +178,53 @@
       </button>
     </div>
     <div class="p-6">
-      <p class="text-gray-600">Modal content in development</p>
+      <!-- Before Developing The Task Input -->
+      <!-- <p class="text-gray-600">Modal content in development</p> -->
+      <div class="p-6">
+        <form (ngSubmit)="saveTask()" #taskForm="ngForm" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-1">Task Name</label>
+            <input
+              type="text"
+              [(ngModel)]="taskData.title"
+              name="title"
+              required
+              class="w-full border border-gray-300 rounded-lg px-3 py-2"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-1">Task Description</label>
+            <textarea
+              [(ngModel)]="taskData.description"
+              name="description"
+              required
+              class="w-full border border-gray-300 rounded-lg px-3 py-2"
+            ></textarea>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-1">Status</label>
+            <select
+              [(ngModel)]="taskData.status"
+              name="status"
+              required
+              class="w-full border border-gray-300 rounded-lg px-3 py-2"
+            >
+              <option value="todo">To Do</option>
+              <option value="in-progress">In Progress</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+          >
+            Save Task
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
