@@ -1,0 +1,44 @@
+<!-- Header -->
+<div class="flex items-center justify-between mb-8">
+  <h1 class="text-3xl font-poppins font-bold text-gray-900">Tasks</h1>
+
+  <div class="flex items-center gap-3">
+    <!-- Action Buttons -->
+    <button
+      class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
+      aria-label="Undo"
+    >
+      <img src="./assets/icons/Frame (3).svg" alt="Back icon" />
+    </button>
+
+    <button
+      class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
+      aria-label="Redo"
+    >
+      <img src="./assets/icons/Frame (2).svg" alt="Next icon" />
+    </button>
+
+    <button
+      class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
+      aria-label="Share"
+    >
+      <img src="./assets/icons/Frame (1).svg" alt="People icon" />
+    </button>
+
+    <button
+      class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
+      aria-label="Filter"
+    >
+      <img src="./assets/icons/Frame.svg" alt="Settings icon" />
+    </button>
+
+    <!-- New Task Button -->
+    <button
+      (click)="taskService.openModal()"
+      class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-sm"
+    >
+      <span>New task</span>
+      <img src="./assets/icons/plus icon.svg" alt="Plus Icon" />
+    </button>
+  </div>
+</div>

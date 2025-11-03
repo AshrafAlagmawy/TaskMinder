@@ -1,1 +1,33 @@
-<h3>Task Column</h3>
+<!-- Three Columns Layout (Todo / In Progress / Done) -->
+<div class="rounded-lg p-4" [ngClass]="backgroundColor">
+  <div class="flex items-center gap-2 mb-4">
+    <img [src]="icon" alt="To do Icon" />
+    <h2 class="text-lg font-semibold text-gray-800">{{ title }}</h2>
+  </div>
+  <div class="space-y-3">
+    @for (task of taskService.getTask(taskStatus); track task.id) {
+    <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+      <div class="flex items-start justify-between mb-3">
+        <img [src]="task.assigneeImage" alt="User" class="w-10 h-10 rounded-full" />
+        <div class="flex gap-2">
+          <button
+            (click)="taskService.openModal(task)"
+            class="p-1.5 hover:bg-gray-100 rounded transition-colors"
+          >
+            <img src="./assets/icons/edit.svg" alt="Edit Icon" />
+          </button>
+          <button
+            (click)="taskService.deleteTask(task.id)"
+            class="p-1.5 hover:bg-red-50 rounded transition-colors"
+          >
+            <img src="./assets/icons/delete.svg" alt="Delete Icon" />
+          </button>
+        </div>
+      </div>
+      <p class="text-sm text-gray-600">{{ task.description }}</p>
+    </div>
+    } @empty {
+    <div class="text-center p-4 text-gray-400 italic">{{ emptyMsg }}</div>
+    }
+  </div>
+</div>

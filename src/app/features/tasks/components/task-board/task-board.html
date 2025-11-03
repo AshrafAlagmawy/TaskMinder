@@ -1,224 +1,33 @@
 <div class="min-h-screen bg-gray-50 p-8">
   <!-- Header -->
-  <div class="flex items-center justify-between mb-8">
-    <h1 class="text-3xl font-poppins font-bold text-gray-900">Tasks</h1>
-
-    <div class="flex items-center gap-3">
-      <!-- Action Buttons -->
-      <button
-        class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
-        aria-label="Undo"
-      >
-        <img src="./assets/icons/Frame (3).svg" alt="Back icon" />
-      </button>
-
-      <button
-        class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
-        aria-label="Redo"
-      >
-        <img src="./assets/icons/Frame (2).svg" alt="Next icon" />
-      </button>
-
-      <button
-        class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
-        aria-label="Share"
-      >
-        <img src="./assets/icons/Frame (1).svg" alt="People icon" />
-      </button>
-
-      <button
-        class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
-        aria-label="Filter"
-      >
-        <img src="./assets/icons/Frame.svg" alt="Settings icon" />
-      </button>
-
-      <!-- New Task Button -->
-      <button
-        (click)="openModal()"
-        class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-sm"
-      >
-        <span>New task</span>
-        <img src="./assets/icons/plus icon.svg" alt="Plus Icon" />
-      </button>
-    </div>
-  </div>
+  <app-task-header></app-task-header>
 
   <!-- Three Columns Layout (Todo / In Progress / Done) -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    <!-- TO DO COLUMN -->
-    <div class="bg-blue-50 rounded-lg p-4">
-      <div class="flex items-center gap-2 mb-4">
-        <img src="./assets/icons/Card status icon (1).svg" alt="To do Icon" />
-        <h2 class="text-lg font-semibold text-gray-800">To do</h2>
-      </div>
-      <div class="space-y-3">
-        @for (task of toDoTasks; track task.id) {
-        <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
-          <div class="flex items-start justify-between mb-3">
-            <img [src]="task.assigneeImage" alt="User" class="w-10 h-10 rounded-full" />
-            <div class="flex gap-2">
-              <button
-                (click)="openModal(task)"
-                class="p-1.5 hover:bg-gray-100 rounded transition-colors"
-              >
-                <img src="./assets/icons/edit.svg" alt="Edit Icon" />
-              </button>
-              <button
-                (click)="deleteTask(task.id)"
-                class="p-1.5 hover:bg-red-50 rounded transition-colors"
-              >
-                <img src="./assets/icons/delete.svg" alt="Delete Icon" />
-              </button>
-            </div>
-          </div>
-          <p class="text-sm text-gray-600">{{ task.description }}</p>
-        </div>
-        } @empty {
-        <div class="text-center p-4 text-gray-400 italic">No tasks yet</div>
-        }
-      </div>
-    </div>
+    <app-task-column
+      title="To do"
+      icon="./assets/icons/Card status icon (1).svg"
+      backgroundColor="bg-blue-50"
+      taskStatus="todo"
+      emptyMsg="No tasks yet"
+    ></app-task-column>
 
-    <!-- IN PROGRESS COLUMN -->
-    <div class="bg-orange-50 rounded-lg p-4">
-      <div class="flex items-center gap-2 mb-4">
-        <img src="./assets/icons/Card status icon (2).svg" alt="In Progress Icon" />
-        <h2 class="text-lg font-semibold text-amber-800">In progress</h2>
-      </div>
-      <div class="space-y-3">
-        @for (task of inProgressTasks; track task.id) {
-        <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
-          <div class="flex items-start justify-between mb-3">
-            <img [src]="task.assigneeImage" alt="User" class="w-10 h-10 rounded-full" />
-            <div class="flex gap-2">
-              <button
-                (click)="openModal(task)"
-                class="p-1.5 hover:bg-gray-100 rounded transition-colors"
-              >
-                <img src="./assets/icons/edit.svg" alt="Edit Icon" />
-              </button>
-              <button
-                (click)="deleteTask(task.id)"
-                class="p-1.5 hover:bg-red-50 rounded transition-colors"
-              >
-                <img src="./assets/icons/delete.svg" alt="Delete Icon" />
-              </button>
-            </div>
-          </div>
-          <p class="text-sm text-gray-600">{{ task.description }}</p>
-        </div>
-        } @empty {
-        <div class="text-center p-4 text-gray-400 italic">No tasks in progress</div>
-        }
-      </div>
-    </div>
+    <app-task-column
+      title="In progress"
+      icon="./assets/icons/Card status icon (2).svg"
+      backgroundColor="bg-orange-50"
+      taskStatus="in-progress"
+      emptyMsg="No tasks in progress"
+    ></app-task-column>
 
-    <!-- DONE COLUMN -->
-    <div class="bg-green-50 rounded-lg p-4">
-      <div class="flex items-center gap-2 mb-4">
-        <img src="./assets/icons/Card status icon.svg" alt="Done Icon" />
-        <h2 class="text-lg font-semibold text-green-800">Done</h2>
-      </div>
-      <div class="space-y-3">
-        @for (task of doneTasks; track task.id) {
-        <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
-          <div class="flex items-start justify-between mb-3">
-            <img [src]="task.assigneeImage" alt="User" class="w-10 h-10 rounded-full" />
-            <div class="flex gap-2">
-              <button
-                (click)="openModal(task)"
-                class="p-1.5 hover:bg-gray-100 rounded transition-colors"
-              >
-                <img src="./assets/icons/edit.svg" alt="Edit Icon" />
-              </button>
-              <button
-                (click)="deleteTask(task.id)"
-                class="p-1.5 hover:bg-red-50 rounded transition-colors"
-              >
-                <img src="./assets/icons/delete.svg" alt="Delete Icon" />
-              </button>
-            </div>
-          </div>
-          <p class="text-sm text-gray-600">{{ task.description }}</p>
-        </div>
-        } @empty {
-        <div class="text-center p-4 text-gray-400 italic">All tasks done 🎉</div>
-        }
-      </div>
-    </div>
+    <app-task-column
+      title="Done"
+      icon="./assets/icons/Card status icon.svg"
+      backgroundColor="bg-green-50"
+      taskStatus="done"
+      emptyMsg="All tasks done 🎉"
+    ></app-task-column>
   </div>
 </div>
 
-<!-- Modal -->
-@if(showModal){
-<div
-  class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-  (click)="closeModal()"
->
-  <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl" (click)="$event.stopPropagation()">
-    <div class="flex items-center justify-between p-6 border-b">
-      <h2 class="text-2xl font-bold">New Task</h2>
-      <button (click)="closeModal()" class="p-2 hover:bg-gray-100 rounded-lg">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
-    </div>
-    <div class="p-6">
-      <!-- Before Developing The Task Input -->
-      <!-- <p class="text-gray-600">Modal content in development</p> -->
-      <div class="p-6">
-        <form (ngSubmit)="saveTask()" #taskForm="ngForm" class="space-y-4">
-          <div>
-            <label class="block text-sm font-medium mb-1">Task Name</label>
-            <input
-              type="text"
-              [(ngModel)]="taskData.title"
-              name="title"
-              required
-              class="w-full border border-gray-300 rounded-lg px-3 py-2"
-            />
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium mb-1">Task Description</label>
-            <textarea
-              [(ngModel)]="taskData.description"
-              name="description"
-              required
-              class="w-full border border-gray-300 rounded-lg px-3 py-2"
-            ></textarea>
-          </div>
-
-          <div>
-            <label class="block text-sm font-medium mb-1">Status</label>
-            <select
-              [(ngModel)]="taskData.status"
-              name="status"
-              required
-              class="w-full border border-gray-300 rounded-lg px-3 py-2"
-            >
-              <option value="todo">To Do</option>
-              <option value="in-progress">In Progress</option>
-              <option value="done">Done</option>
-            </select>
-          </div>
-
-          <button
-            type="submit"
-            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-          >
-            Save Task
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-}
+<app-task-modal></app-task-modal>
