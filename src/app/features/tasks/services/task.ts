@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { Task } from '../../../core/models/task.model';
 import { StorageService } from '../../../core/services/storage';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -80,5 +81,12 @@ export class TaskService {
 
   getTask(status: string) {
     return this._tasks().filter((t) => t.status === status);
+  }
+
+  updateTaskStatus(taskId: number, newStatus: 'todo' | 'in-progress' | 'done'): void {
+    this._tasks.update((tasks) => {
+      return tasks.map((task) => (task.id === taskId ? { ...task, status: newStatus } : task));
+    });
+    this.saveTasksInLocalStorage();
   }
 }

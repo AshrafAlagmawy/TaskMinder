@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { Dashboard } from './features/dashboard/dashboard';
 import { Projects } from './features/projects/projects';
 import { Calendar } from './features/calendar/calendar';
-import { Tasks } from './features/tasks/tasks';
+import { TaskBoard } from './features/tasks/components/task-board/task-board';
 import { NotFound } from './shared/components/not-found/not-found';
 
 export const routes: Routes = [
@@ -23,7 +23,7 @@ export const routes: Routes = [
   },
   {
     path: 'tasks',
-    component: Tasks,
+    component: TaskBoard,
     pathMatch: 'full',
   },
   {

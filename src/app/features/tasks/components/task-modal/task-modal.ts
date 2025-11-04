@@ -11,6 +11,4 @@ import { FormsModule } from '@angular/forms';
 })
 export class TaskModal {
   constructor(public taskService: TaskService) {}
-  name: string = '';
-  description: string = '';
 }

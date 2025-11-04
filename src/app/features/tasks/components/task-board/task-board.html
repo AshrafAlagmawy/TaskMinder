@@ -3,13 +3,16 @@
   <app-task-header></app-task-header>
 
   <!-- Three Columns Layout (Todo / In Progress / Done) -->
-  <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+  <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6" cdkDropListGroup>
     <app-task-column
       title="To do"
       icon="./assets/icons/Card status icon (1).svg"
       backgroundColor="bg-blue-50"
       taskStatus="todo"
       emptyMsg="No tasks yet"
+      [dropListId]="'todo'"
+      [connectedDropLists]="dropListIds"
+      (taskDropped)="onTaskDrop($event)"
     ></app-task-column>
 
     <app-task-column
@@ -18,6 +21,9 @@
       backgroundColor="bg-orange-50"
       taskStatus="in-progress"
       emptyMsg="No tasks in progress"
+      [dropListId]="'in-progress'"
+      [connectedDropLists]="dropListIds"
+      (taskDropped)="onTaskDrop($event)"
     ></app-task-column>
 
     <app-task-column
@@ -26,6 +32,9 @@
       backgroundColor="bg-green-50"
       taskStatus="done"
       emptyMsg="All tasks done 🎉"
+      [dropListId]="'done'"
+      [connectedDropLists]="dropListIds"
+      (taskDropped)="onTaskDrop($event)"
     ></app-task-column>
   </div>
 </div>

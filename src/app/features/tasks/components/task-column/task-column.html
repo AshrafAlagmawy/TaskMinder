@@ -4,9 +4,16 @@
     <img [src]="icon" alt="To do Icon" />
     <h2 class="text-lg font-semibold text-gray-800">{{ title }}</h2>
   </div>
-  <div class="space-y-3">
+  <div
+    cdkDropList
+    [id]="dropListId"
+    [cdkDropListData]="tasks"
+    [cdkDropListConnectedTo]="connectedDropLists"
+    (cdkDropListDropped)="onDrop($event)"
+    class="space-y-3"
+  >
     @for (task of taskService.getTask(taskStatus); track task.id) {
-    <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow">
+    <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow" cdkDrag>
       <div class="flex items-start justify-between mb-3">
         <img [src]="task.assigneeImage" alt="User" class="w-10 h-10 rounded-full" />
         <div class="flex gap-2">
