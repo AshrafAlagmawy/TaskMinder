@@ -1,36 +1,37 @@
 import { Injectable } from '@angular/core';
 import { Task } from '../../../core/models/task.model';
+import { StorageService } from '../../../core/services/storage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
+  constructor(private storage: StorageService) {
+    this.loadTasks();
+  }
+
   showModal = false;
   editingTask: Task | null = null;
 
-  public _tasks: Task[] = [
-    {
-      id: 1,
-      title: 'Design homepage layout',
-      description: 'Create wireframes and UI components for the homepage',
-      status: 'todo',
-      assigneeImage: 'https://i.pravatar.cc/150?img=1',
-    },
-    {
-      id: 2,
-      title: 'API integration',
-      description: 'Connect front-end with backend REST API',
-      status: 'in-progress',
-      assigneeImage: 'https://i.pravatar.cc/150?img=2',
-    },
-    {
-      id: 3,
-      title: 'Bug fixes',
-      description: 'Fix reported bugs in login and signup flow',
-      status: 'done',
-      assigneeImage: 'https://i.pravatar.cc/150?img=3',
-    },
-  ];
+  public _tasks: Task[] = [];
+
+  private loadTasks() {
+    const storedTasks = this.storage.getItem<Task[]>('tasks');
+    if (storedTasks && storedTasks.length > 0) this._tasks = storedTasks;
+  }
+
+  private saveTasks() {
+    this.storage.setItem('tasks', this._tasks);
+  }
+
+  clearAllTasks(): void {
+    this._tasks = [];
+    this.storage.removeItem('tasks');
+  }
+
+  get tasks(): Task[] {
+    return this._tasks;
+  }
 
   taskData: Partial<Task> = {};
 
@@ -55,6 +56,7 @@ export class TaskService {
       };
       this._tasks.push(newTask);
     }
+    this.saveTasks();
     this.closeModal();
   }
 
@@ -66,6 +68,7 @@ export class TaskService {
 
   deleteTask(id: number) {
     this._tasks = this._tasks.filter((t) => t.id !== id);
+    this.saveTasks();
   }
 
   getTask(status: string) {
