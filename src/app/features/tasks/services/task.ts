@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Task } from '../../../core/models/task.model';
 import { StorageService } from '../../../core/services/storage';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -10,27 +9,29 @@ export class TaskService {
     this.loadTasks();
   }
 
+  localStorageKey: string = 'tasks';
+
   showModal = false;
   editingTask: Task | null = null;
 
-  public _tasks: Task[] = [];
+  public _tasks = signal<Task[]>([]);
 
   private loadTasks() {
-    const storedTasks = this.storage.getItem<Task[]>('tasks');
-    if (storedTasks && storedTasks.length > 0) this._tasks = storedTasks;
+    const storedTasks = this.storage.getItem<Task[]>(this.localStorageKey);
+    if (storedTasks && storedTasks.length > 0) this._tasks.set(storedTasks);
   }
 
-  private saveTasks() {
-    this.storage.setItem('tasks', this._tasks);
+  private saveTasksInLocalStorage() {
+    this.storage.setItem(this.localStorageKey, this._tasks());
   }
 
   clearAllTasks(): void {
-    this._tasks = [];
-    this.storage.removeItem('tasks');
+    this._tasks.set([]);
+    this.storage.removeItem(this.localStorageKey);
   }
 
   get tasks(): Task[] {
-    return this._tasks;
+    return this._tasks();
   }
 
   taskData: Partial<Task> = {};
@@ -43,10 +44,16 @@ export class TaskService {
 
   saveTask() {
     if (this.editingTask) {
-      const index = this._tasks.findIndex((t) => t.id === this.editingTask!.id);
-      if (index !== -1) this._tasks[index] = { ...this.editingTask, ...this.taskData } as Task;
+      this._tasks.update((tasks) => {
+        const index = tasks.findIndex((t) => t.id === this.editingTask!.id);
+        if (index !== -1) {
+          const updated = [...tasks];
+          updated[index] = { ...this.editingTask, ...this.taskData } as Task;
+          return updated;
+        }
+        return tasks;
+      });
     } else {
-      // Add new task
       const newTask: Task = {
         id: Date.now(),
         title: this.taskData.title!,
@@ -54,9 +61,9 @@ export class TaskService {
         status: this.taskData.status as 'todo' | 'in-progress' | 'done',
         assigneeImage: 'https://i.pravatar.cc/150?img=' + (Math.floor(Math.random() * 10) + 1),
       };
-      this._tasks.push(newTask);
+      this._tasks.update((tasks) => [...tasks, newTask]);
     }
-    this.saveTasks();
+    this.saveTasksInLocalStorage();
     this.closeModal();
   }
 
@@ -67,11 +74,11 @@ export class TaskService {
   }
 
   deleteTask(id: number) {
-    this._tasks = this._tasks.filter((t) => t.id !== id);
-    this.saveTasks();
+    this._tasks.update((tasks) => tasks.filter((t) => t.id !== id));
+    this.saveTasksInLocalStorage();
   }
 
   getTask(status: string) {
-    return this._tasks.filter((t) => t.status === status);
+    return this._tasks().filter((t) => t.status === status);
   }
 }
