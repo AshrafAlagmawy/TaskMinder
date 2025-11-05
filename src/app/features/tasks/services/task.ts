@@ -11,11 +11,11 @@ export class TaskService {
   }
 
   localStorageKey: string = 'tasks';
-
   showModal = false;
   editingTask: Task | null = null;
-
   public _tasks = signal<Task[]>([]);
+  titleError: boolean = false;
+  descriptionError: boolean = false;
 
   private loadTasks() {
     const storedTasks = this.storage.getItem<Task[]>(this.localStorageKey);
@@ -44,6 +44,21 @@ export class TaskService {
   }
 
   saveTask() {
+    const title = this.taskData.title?.trim();
+    const description = this.taskData.description?.trim();
+
+    // Handling duplicate tasks
+    if (this.findingDuplicateTasks(title, description, this.editingTask?.id)) {
+      if (this.titleError && this.descriptionError) {
+        alert('Task title and task description has been exists before');
+      } else if (this.titleError) {
+        alert('Task title has been exists before');
+      } else {
+        alert('Task description has been exists before');
+      }
+      return;
+    }
+
     if (this.editingTask) {
       this._tasks.update((tasks) => {
         const index = tasks.findIndex((t) => t.id === this.editingTask!.id);
@@ -88,5 +103,23 @@ export class TaskService {
       return tasks.map((task) => (task.id === taskId ? { ...task, status: newStatus } : task));
     });
     this.saveTasksInLocalStorage();
+  }
+
+  findingDuplicateTasks(title?: string, description?: string, excludeId?: number): boolean {
+    if (!title?.trim() || !description?.trim()) {
+      return false;
+    }
+
+    return this._tasks().some((task) => {
+      this.titleError = task.title.toLowerCase().trim() === title.toLowerCase().trim();
+      this.descriptionError =
+        task.description.toLowerCase().trim() === description.toLowerCase().trim();
+
+      return (
+        (task.title.toLowerCase().trim() === title.toLowerCase().trim() ||
+          task.description.toLowerCase().trim() === description.toLowerCase().trim()) &&
+        excludeId !== task.id
+      );
+    });
   }
 }
