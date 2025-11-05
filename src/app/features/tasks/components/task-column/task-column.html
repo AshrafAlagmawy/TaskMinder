@@ -13,26 +13,7 @@
     class="space-y-3"
   >
     @for (task of taskService.getTask(taskStatus); track task.id) {
-    <div class="bg-white rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow" cdkDrag>
-      <div class="flex items-start justify-between mb-3">
-        <img [src]="task.assigneeImage" alt="User" class="w-10 h-10 rounded-full" />
-        <div class="flex gap-2">
-          <button
-            (click)="taskService.openModal(task)"
-            class="p-1.5 hover:bg-gray-100 rounded transition-colors"
-          >
-            <img src="./assets/icons/edit.svg" alt="Edit Icon" />
-          </button>
-          <button
-            (click)="taskService.deleteTask(task.id)"
-            class="p-1.5 hover:bg-red-50 rounded transition-colors"
-          >
-            <img src="./assets/icons/delete.svg" alt="Delete Icon" />
-          </button>
-        </div>
-      </div>
-      <p class="text-sm text-gray-600">{{ task.description }}</p>
-    </div>
+    <app-task-card [task]="task"></app-task-card>
     } @empty {
     <div class="text-center p-4 text-gray-400 italic">{{ emptyMsg }}</div>
     }

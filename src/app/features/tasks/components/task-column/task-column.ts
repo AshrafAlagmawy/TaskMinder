@@ -2,11 +2,12 @@ import { TaskService } from './../../services/task';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule, NgClass } from '@angular/common';
 import { DragDropModule, CdkDragDrop } from '@angular/cdk/drag-drop';
+import { TaskCard } from '../task-card/task-card';
 
 @Component({
   selector: 'app-task-column',
   standalone: true,
-  imports: [CommonModule, NgClass, DragDropModule],
+  imports: [CommonModule, NgClass, DragDropModule, TaskCard],
   templateUrl: './task-column.html',
   styleUrl: './task-column.scss',
 })
