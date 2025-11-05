@@ -1,0 +1,60 @@
+<section class="bg-main-light shadow p-2 my-5 p-3 rounded-4 w-50 m-auto">
+  <h2 class="text-center text-2xl font-semibold text-indigo-600 mb-6">Register Now</h2>
+
+  <form action="" [formGroup]="registerForm">
+    <div class="my-3">
+      <label for="name" class="mb-2">Name</label>
+      <input
+        placeholder="Enter Your Name"
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+      />
+    </div>
+
+    <div class="my-3">
+      <label for="email" class="mb-2">Email</label>
+      <input
+        placeholder="Enter Your Email"
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+      />
+    </div>
+
+    <div class="my-3">
+      <label for="password" class="mb-2">Password</label>
+      <input
+        placeholder="Enter Your Password"
+        type="password"
+        class="form-control"
+        id="password"
+        formControlName="password"
+      />
+    </div>
+
+    <div class="my-3">
+      <label for="rePassword" class="mb-2">Confirm Password</label>
+      <input
+        placeholder="Enter Your Password Again For Confirmation"
+        type="password"
+        class="form-control"
+        id="rePassword"
+        formControlName="rePassword"
+      />
+    </div>
+
+    <button
+      [disabled]="registerForm.invalid || isLoading"
+      routerLink="/login"
+      type="submit"
+      class="btn d-block ms-auto"
+    >
+      Register @if(isLoading){
+      <span><i class="fas fa-spin fa-spinner"></i></span>
+      }
+    </button>
+  </form>
+</section>

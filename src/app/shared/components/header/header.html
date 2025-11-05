@@ -16,15 +16,50 @@
             <img src="./assets/icons/Notification icon.svg" alt="Notification Icon" />
           </button>
 
-          <div>
+          <!-- User Image & Settings -->
+          <div class="relative">
             <img
               src="./assets/icons/User Avatar.svg"
               alt="User"
-              class="rounded-circle border border-secondary-subtle"
+              class="rounded-full border border-gray-300 cursor-pointer"
               width="40"
               height="40"
-              style="cursor: pointer"
+              (click)="toggleMenu()"
             />
+
+            <!-- Drop Down Menu -->
+            @if(showMenu){
+            <div
+              class="absolute right-0 mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+            >
+              <ul class="py-2 text-sm text-gray-700">
+                <li>
+                  <button
+                    routerLink="edit-profile"
+                    class="block w-full text-center px-4 py-2 hover:bg-gray-100"
+                  >
+                    Edit Profile
+                  </button>
+                </li>
+                <li>
+                  <button
+                    routerLink="login"
+                    class="block w-full text-center px-4 py-2 hover:bg-gray-100"
+                  >
+                    Login
+                  </button>
+                </li>
+                <li>
+                  <button
+                    routerLink="register"
+                    class="block w-full text-center px-4 py-2 hover:bg-gray-100"
+                  >
+                    Register
+                  </button>
+                </li>
+              </ul>
+            </div>
+            }
           </div>
         </div>
       </div>

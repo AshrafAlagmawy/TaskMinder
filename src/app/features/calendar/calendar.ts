@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
+import { DevelopedSoon } from '../../shared/components/developed-soon/developed-soon';
 
 @Component({
   selector: 'app-calendar',
-  imports: [],
+  imports: [DevelopedSoon],
   templateUrl: './calendar.html',
   styleUrl: './calendar.scss',
 })
-export class Calendar {
-
-}
+export class Calendar {}

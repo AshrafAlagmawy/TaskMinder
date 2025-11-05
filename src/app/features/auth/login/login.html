@@ -1,0 +1,38 @@
+<section class="bg-main-light shadow my-5 p-3 rounded-4 w-50 m-auto">
+  <h2 class="text-center text-2xl font-semibold text-indigo-600 mb-6">Login Now</h2>
+
+  <form action="" [formGroup]="loginForm">
+    <div class="my-3">
+      <label for="email" class="mb-2">Email</label>
+      <input
+        placeholder="Enter Your Email"
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+      />
+    </div>
+
+    <div class="my-3">
+      <label for="password" class="mb-2">Password</label>
+      <input
+        placeholder="Enter Your Password"
+        type="password"
+        class="form-control"
+        id="password"
+        formControlName="password"
+      />
+    </div>
+
+    <button
+      [disabled]="loginForm.invalid || isLoading"
+      routerLink="tasks"
+      type="submit"
+      class="btn d-block ms-auto"
+    >
+      Login @if(isLoading){
+      <span><i class="fas fa-spin fa-spinner"></i></span>
+      }
+    </button>
+  </form>
+</section>
