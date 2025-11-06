@@ -1,7 +1,13 @@
 <section class="bg-main-light shadow p-2 my-5 p-3 rounded-4 w-50 m-auto">
-  <h2 class="text-center text-2xl font-semibold text-indigo-600 mb-6">Register Now</h2>
+  <div>
+    <div class="logo p-3 d-flex justify-content-center align-items-center gap-2 mb-3">
+      <img src="/assets/icons/Rectangle 11 (Stroke).png" alt="TaskMinder Logo" />
+      <span class="fs-5 fw-semibold">TaskMinder.</span>
+    </div>
+    <h2 class="text-center text-2xl font-semibold text-indigo-600 mb-6">Register</h2>
+  </div>
 
-  <form action="" [formGroup]="registerForm">
+  <form action="" [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
     <div class="my-3">
       <label for="name" class="mb-2">Name</label>
       <input
@@ -45,6 +51,26 @@
     </div>
 
     <div class="my-3">
+      <label for="phone">Phone Number</label>
+      <input
+        placeholder="Enter Your Phone Number"
+        type="tel"
+        class="form-control"
+        id="phone"
+        formControlName="phone"
+      />
+      @if(isFieldValid("phone")){
+      <div class="alert alert-danger w-50">
+        @if(hasError("phone","required")){
+        <p class="m-0">Phone Number is required</p>
+        } @else if(hasError("phone","pattern")){
+        <p class="m-0">Enter valid phone number</p>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="my-3">
       <label for="password" class="mb-2">Password</label>
       <input
         placeholder="Enter Your Password"
@@ -76,18 +102,9 @@
     </div>
 
     <div class="d-flex justify-content-end ms-auto gap-2">
-      <button routerLink="/login" type="submit" class="btn d-block">
-        Login @if(isLoading){
-        <span><i class="fas fa-spin fa-spinner"></i></span>
-        }
-      </button>
+      <button routerLink="/login" type="button" class="btn d-block">Login</button>
 
-      <button
-        [disabled]="registerForm.invalid || isLoading"
-        routerLink="/login"
-        type="submit"
-        class="btn d-block"
-      >
+      <button [disabled]="registerForm.invalid || isLoading" type="submit" class="btn d-block">
         Register @if(isLoading){
         <span><i class="fas fa-spin fa-spinner"></i></span>
         }

@@ -1,7 +1,13 @@
 <section class="bg-main-light shadow my-5 p-3 rounded-4 w-50 m-auto">
-  <h2 class="text-center text-2xl font-semibold text-indigo-600 mb-6">Login Now</h2>
+  <div>
+    <div class="logo p-3 d-flex justify-content-center align-items-center gap-2 mb-3">
+      <img src="/assets/icons/Rectangle 11 (Stroke).png" alt="TaskMinder Logo" />
+      <span class="fs-5 fw-semibold">TaskMinder.</span>
+    </div>
+    <h2 class="text-center text-2xl font-semibold text-indigo-600 mb-6">Login</h2>
+  </div>
 
-  <form action="" [formGroup]="loginForm">
+  <form action="" [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
     <div class="my-3">
       <label for="email" class="mb-2">Email</label>
       <input
@@ -43,18 +49,9 @@
     </div>
 
     <div class="d-flex justify-content-end ms-auto gap-2">
-      <button routerLink="/register" type="submit" class="btn d-block">
-        Register @if(isLoading){
-        <span><i class="fas fa-spin fa-spinner"></i></span>
-        }
-      </button>
+      <button routerLink="/register" type="button" class="btn d-block">Register</button>
 
-      <button
-        [disabled]="loginForm.invalid || isLoading"
-        routerLink="/tasks"
-        type="submit"
-        class="btn d-block"
-      >
+      <button [disabled]="loginForm.invalid || isLoading" type="submit" class="btn d-block">
         Login @if(isLoading){
         <span><i class="fas fa-spin fa-spinner"></i></span>
         }

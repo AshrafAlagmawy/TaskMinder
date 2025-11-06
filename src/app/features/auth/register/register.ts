@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../core/services/auth';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -9,8 +11,12 @@ import { RouterLink } from '@angular/router';
   styleUrl: './register.scss',
 })
 export class Register {
+  private readonly _AuthService = inject(AuthService);
   private readonly _FormBuilder = inject(FormBuilder);
+  private readonly _Router = inject(Router);
   isLoading: boolean = false;
+  msgSuccess: boolean = false;
+  msgError: string = '';
 
   registerForm: FormGroup = this._FormBuilder.group({
     name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
@@ -24,8 +30,36 @@ export class Register {
         Validators.pattern(/^\w{6,}$/),
       ],
     ],
+    phone: [null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]],
     rePassword: [null],
   });
+
+  registerSubmit(): void {
+    if (this.registerForm.valid) {
+      this.isLoading = true;
+
+      this._AuthService.setRegisterForm(this.registerForm.value).subscribe({
+        next: (response) => {
+          console.log(response);
+
+          if (response.message === 'success') {
+            this.msgSuccess = true;
+            setTimeout(() => {
+              this._Router.navigate(['/login']);
+            }, 1000);
+          }
+          this.isLoading = false;
+        },
+        error: (err: HttpErrorResponse) => {
+          console.log(err.message);
+          this.msgError = err.error.message;
+          this.isLoading = false;
+        },
+      });
+    } else {
+      this.registerForm.markAllAsTouched();
+    }
+  }
 
   isFieldValid(fieldName: string): boolean {
     const field = this.registerForm.get(fieldName);
