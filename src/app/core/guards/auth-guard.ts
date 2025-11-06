@@ -3,12 +3,10 @@ import { Router } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
 export const authGuard = () => {
-  const router = inject(Router);
+  const _Router = inject(Router);
 
-  if (typeof window !== 'undefined' && localStorage) {
-    if (localStorage.getItem('userToken') !== null) return true;
-  }
+  if (typeof window !== 'undefined' && localStorage.getItem('userToken') !== null) return true;
 
-  router.navigate(['/login']);
+  _Router.navigate(['/login']);
   return false;
 };

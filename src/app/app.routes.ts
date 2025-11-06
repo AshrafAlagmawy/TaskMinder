@@ -10,16 +10,14 @@ import { EditProfile } from './shared/components/edit-profile/edit-profile';
 import { AuthLayout } from './layout/auth-layout/auth-layout';
 import { MainLayout } from './layout/main-layout/main-layout';
 import { authGuard } from './core/guards/auth-guard';
+import { loggedGuard } from './core/guards/logged-guard';
 
 export const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'tasks',
-    pathMatch: 'full',
-  },
+  { path: '', redirectTo: 'tasks', pathMatch: 'full' },
   {
     path: '',
     component: AuthLayout,
+    canActivate: [loggedGuard],
     children: [
       { path: 'login', component: Login },
       { path: 'register', component: Register },
