@@ -14,14 +14,15 @@ export class Login {
 
   loginForm: FormGroup = this._FormBuilder.group({
     email: [null, [Validators.required, Validators.email]],
-    password: [
-      null,
-      [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(30),
-        Validators.pattern(/^\w{6,}$/),
-      ],
-    ],
+    password: [null, [Validators.required, Validators.pattern(/^\w{6,}$/)]],
   });
+
+  isFieldValid(fieldName: string): boolean {
+    const field = this.loginForm.get(fieldName);
+    return !!(field?.errors && (field?.touched || field?.dirty));
+  }
+
+  hasError(fieldName: string, errorType: string): boolean {
+    return !!this.loginForm.get(fieldName)?.hasError(errorType);
+  }
 }

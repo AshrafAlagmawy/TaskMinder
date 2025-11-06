@@ -11,6 +11,17 @@
         id="name"
         formControlName="name"
       />
+      @if(isFieldValid("name")){
+      <div class="alert alert-danger w-auto m-2 p-2">
+        @if(hasError("name","required")){
+        <p class="m-0">Name is required</p>
+        }@else if(hasError("name","minlength")){
+        <p class="m-0">Name must be greater than 3 characters</p>
+        } @else if(hasError("name","maxlength")){
+        <p class="m-0">Name must be less than 30 characters</p>
+        }
+      </div>
+      }
     </div>
 
     <div class="my-3">
@@ -22,6 +33,15 @@
         id="email"
         formControlName="email"
       />
+      @if(isFieldValid("email")){
+      <div class="alert alert-danger w-auto m-2 p-2">
+        @if(hasError("email","required")){
+        <p class="m-0">Email is required</p>
+        }@else if(hasError("email","email")){
+        <p class="m-0">Email valid email</p>
+        }
+      </div>
+      }
     </div>
 
     <div class="my-3">
@@ -33,6 +53,15 @@
         id="password"
         formControlName="password"
       />
+      @if(isFieldValid("password")){
+      <div class="alert alert-danger w-auto m-2 p-2">
+        @if(hasError("password","required")){
+        <p class="m-0">Password is required</p>
+        }@else if(hasError("password","pattern")){
+        <p class="m-0">Enter valid password</p>
+        }
+      </div>
+      }
     </div>
 
     <div class="my-3">

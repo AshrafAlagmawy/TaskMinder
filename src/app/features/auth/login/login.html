@@ -11,6 +11,15 @@
         id="email"
         formControlName="email"
       />
+      @if(isFieldValid("email")){
+      <div class="alert alert-danger w-auto m-2 p-2">
+        @if(hasError("email","required")){
+        <p class="m-0">Email is required</p>
+        }@else if(hasError("email","email")){
+        <p class="m-0">Enter valid email</p>
+        }
+      </div>
+      }
     </div>
 
     <div class="my-3">
@@ -22,6 +31,15 @@
         id="password"
         formControlName="password"
       />
+      @if(isFieldValid("password")){
+      <div class="alert alert-danger w-auto m-2 p-2">
+        @if(hasError("password","required")){
+        <p class="m-0">Password is required</p>
+        }@else if(hasError("password","pattern")){
+        <p class="m-0">Enter valid password</p>
+        }
+      </div>
+      }
     </div>
 
     <div class="d-flex justify-content-end ms-auto gap-2">

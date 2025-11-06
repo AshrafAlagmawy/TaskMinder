@@ -26,4 +26,13 @@ export class Register {
     ],
     rePassword: [null],
   });
+
+  isFieldValid(fieldName: string): boolean {
+    const field = this.registerForm.get(fieldName);
+    return !!(field?.errors && (field?.touched || field?.dirty));
+  }
+
+  hasError(fieldName: string, errorType: string): boolean {
+    return !!this.registerForm.get(fieldName)?.hasError(errorType);
+  }
 }
