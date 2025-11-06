@@ -7,6 +7,8 @@ import { NotFound } from './shared/components/not-found/not-found';
 import { Login } from './features/auth/login/login';
 import { Register } from './features/auth/register/register';
 import { EditProfile } from './shared/components/edit-profile/edit-profile';
+import { AuthLayout } from './layout/auth-layout/auth-layout';
+import { MainLayout } from './layout/main-layout/main-layout';
 
 export const routes: Routes = [
   {
@@ -15,39 +17,23 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'login',
-    component: Login,
-    pathMatch: 'full',
+    path: '',
+    component: AuthLayout,
+    children: [
+      { path: 'login', component: Login },
+      { path: 'register', component: Register },
+    ],
   },
   {
-    path: 'register',
-    component: Register,
-    pathMatch: 'full',
-  },
-  {
-    path: 'dashboard',
-    component: Dashboard,
-    pathMatch: 'full',
-  },
-  {
-    path: 'projects',
-    component: Projects,
-    pathMatch: 'full',
-  },
-  {
-    path: 'tasks',
-    component: TaskBoard,
-    pathMatch: 'full',
-  },
-  {
-    path: 'edit-profile',
-    component: EditProfile,
-    pathMatch: 'full',
-  },
-  {
-    path: 'calendar',
-    component: Calendar,
-    pathMatch: 'full',
+    path: '',
+    component: MainLayout,
+    children: [
+      { path: 'dashboard', component: Dashboard },
+      { path: 'projects', component: Projects },
+      { path: 'tasks', component: TaskBoard },
+      { path: 'edit-profile', component: EditProfile },
+      { path: 'calendar', component: Calendar },
+    ],
   },
   {
     path: '**',

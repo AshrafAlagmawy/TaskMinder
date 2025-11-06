@@ -122,4 +122,16 @@ export class TaskService {
       );
     });
   }
+
+  // Filter tasks for search bar
+  filterTasks(search: string): Task[] {
+    const searchWord = search.toLowerCase().trim();
+
+    if (!searchWord) return this._tasks();
+
+    return this._tasks().filter((task) => {
+      task.title.toLowerCase().includes(searchWord) ||
+        task.description.toLowerCase().includes(searchWord);
+    });
+  }
 }

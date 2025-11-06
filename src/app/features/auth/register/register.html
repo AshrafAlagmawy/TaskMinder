@@ -46,15 +46,23 @@
       />
     </div>
 
-    <button
-      [disabled]="registerForm.invalid || isLoading"
-      routerLink="/login"
-      type="submit"
-      class="btn d-block ms-auto"
-    >
-      Register @if(isLoading){
-      <span><i class="fas fa-spin fa-spinner"></i></span>
-      }
-    </button>
+    <div class="d-flex justify-content-end ms-auto gap-2">
+      <button routerLink="/login" type="submit" class="btn d-block">
+        Login @if(isLoading){
+        <span><i class="fas fa-spin fa-spinner"></i></span>
+        }
+      </button>
+
+      <button
+        [disabled]="registerForm.invalid || isLoading"
+        routerLink="/login"
+        type="submit"
+        class="btn d-block"
+      >
+        Register @if(isLoading){
+        <span><i class="fas fa-spin fa-spinner"></i></span>
+        }
+      </button>
+    </div>
   </form>
 </section>
