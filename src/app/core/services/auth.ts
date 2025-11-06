@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +23,7 @@ export class AuthService {
 
   saveUserData(): void {
     if (localStorage.getItem('userToken') !== null) {
-      this.userData = localStorage.getItem('userToken');
+      this.userData = jwtDecode(localStorage.getItem('userToken')!);
 
       console.log('User Data : ', this.userData);
     }
