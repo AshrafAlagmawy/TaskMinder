@@ -30,4 +30,8 @@ export class TaskColumn {
   onDrop(event: CdkDragDrop<any[]>) {
     this.taskDropped.emit({ event, status: this.taskStatus });
   }
+
+  tasksLength(): number {
+    return this.taskService.getTask(this.taskStatus).length;
+  }
 }

@@ -30,36 +30,30 @@
             <!-- Drop Down Menu -->
             @if(showMenu){
             <div
-              class="absolute right-0 mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+              class="absolute right-0 mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg z-50 overflow-hidden"
             >
-              <ul class="py-2 text-sm text-gray-700">
-                <li>
-                  <button
-                    routerLink="edit-profile"
-                    class="block w-full text-center px-4 py-2 hover:bg-gray-100"
-                  >
-                    Edit Profile
-                  </button>
-                </li>
-                <li>
-                  <button
-                    (click)="logOut()"
-                    routerLink="login"
-                    class="block w-full text-center px-4 py-2 hover:bg-gray-100"
-                  >
-                    Login
-                  </button>
-                </li>
-                <li>
-                  <button
-                    (click)="logOut()"
-                    routerLink="register"
-                    class="block w-full text-center px-4 py-2 hover:bg-gray-100"
-                  >
-                    Register
-                  </button>
-                </li>
-              </ul>
+              <div class="py-2">
+                <button
+                  routerLink="edit-profile"
+                  class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  Edit Profile
+                </button>
+                <button
+                  (click)="logOut()"
+                  routerLink="login"
+                  class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  Login
+                </button>
+                <button
+                  (click)="logOut()"
+                  routerLink="register"
+                  class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  Register
+                </button>
+              </div>
             </div>
             }
           </div>
