@@ -11,6 +11,16 @@
     <div class="my-3">
       <label for="name" class="mb-2">Name</label>
       <input
+        [ngClass]="{
+          'is-valid':
+            !registerForm.get('name')?.errors && (
+              registerForm.get('name')?.touched || registerForm.get('name')?.dirty
+            ),
+          'is-invalid':
+            registerForm.get('name')?.errors && (
+              registerForm.get('name')?.touched || registerForm.get('name')?.dirty
+            ),
+        }"
         placeholder="Enter Your Name"
         type="text"
         class="form-control"
@@ -33,6 +43,16 @@
     <div class="my-3">
       <label for="email" class="mb-2">Email</label>
       <input
+        [ngClass]="{
+          'is-valid':
+            !registerForm.get('email')?.errors && (
+              registerForm.get('email')?.touched || registerForm.get('email')?.dirty
+            ),
+          'is-invalid':
+            registerForm.get('email')?.errors && (
+              registerForm.get('email')?.touched || registerForm.get('email')?.dirty
+            ),
+        }"
         placeholder="Enter Your Email"
         type="email"
         class="form-control"
@@ -51,8 +71,18 @@
     </div>
 
     <div class="my-3">
-      <label for="phone">Phone Number</label>
+      <label for="phone" class="mb-2">Phone Number</label>
       <input
+        [ngClass]="{
+          'is-valid':
+            !registerForm.get('phone')?.errors && (
+              registerForm.get('phone')?.touched || registerForm.get('phone')?.dirty
+            ),
+          'is-invalid':
+            registerForm.get('phone')?.errors && (
+              registerForm.get('phone')?.touched || registerForm.get('phone')?.dirty
+            ),
+        }"
         placeholder="Enter Your Phone Number"
         type="tel"
         class="form-control"
@@ -60,7 +90,7 @@
         formControlName="phone"
       />
       @if(isFieldValid("phone")){
-      <div class="alert alert-danger w-50">
+      <div class="alert alert-danger w-auto m-2 p-2">
         @if(hasError("phone","required")){
         <p class="m-0">Phone Number is required</p>
         } @else if(hasError("phone","pattern")){
@@ -73,6 +103,16 @@
     <div class="my-3">
       <label for="password" class="mb-2">Password</label>
       <input
+        [ngClass]="{
+          'is-valid':
+            !registerForm.get('password')?.errors && (
+              registerForm.get('password')?.touched || registerForm.get('password')?.dirty
+            ),
+          'is-invalid':
+            registerForm.get('password')?.errors && (
+              registerForm.get('password')?.touched || registerForm.get('password')?.dirty
+            ),
+        }"
         placeholder="Enter Your Password"
         type="password"
         class="form-control"
@@ -93,12 +133,25 @@
     <div class="my-3">
       <label for="rePassword" class="mb-2">Confirm Password</label>
       <input
+        [ngClass]="{
+          'is-valid':
+            !registerForm.get('rePassword')?.errors && (
+              registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty
+            ),
+          'is-invalid':
+            registerForm.get('rePassword')?.errors && (
+              registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty
+            ),
+        }"
         placeholder="Enter Your Password Again For Confirmation"
         type="password"
         class="form-control"
         id="rePassword"
         formControlName="rePassword"
       />
+      @if(registerForm.getError('mismatch')&&registerForm.get("rePassword")?.touched){
+      <p class="m-0">Password confirmations is incorrect</p>
+      }
     </div>
 
     <div class="d-flex justify-content-end ms-auto gap-2">
@@ -110,5 +163,10 @@
         }
       </button>
     </div>
+    @if(msgError){
+    <p class="text-red-600 m-0">{{ msgError }}</p>
+    } @if(msgSuccess){
+    <p class="text-green-600 m-0">Login Success</p>
+    }
   </form>
 </section>

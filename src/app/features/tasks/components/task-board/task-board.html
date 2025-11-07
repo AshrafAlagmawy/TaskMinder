@@ -1,9 +1,12 @@
-<div class="min-h-screen bg-gray-50 p-8">
+<div class="h-screen bg-gray-50 p-8 flex flex-col overflow-hidden">
   <!-- Header -->
-  <app-task-header></app-task-header>
+  <app-task-header class="flex-shrink-0"></app-task-header>
 
   <!-- Three Columns Layout (Todo / In Progress / Done) -->
-  <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6" cdkDropListGroup>
+  <div
+    class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 flex-1 overflow-y-auto mt-6"
+    cdkDropListGroup
+  >
     <app-task-column
       title="To do"
       icon="./assets/icons/Card status icon (1).svg"

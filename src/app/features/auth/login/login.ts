@@ -3,10 +3,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, NgClass],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
@@ -15,7 +16,7 @@ export class Login {
   private readonly _Router = inject(Router);
   private readonly _FormBuilder = inject(FormBuilder);
   isLoading: boolean = false;
-  msgSuccess: boolean = true;
+  msgSuccess: boolean = false;
   msgError: string = '';
 
   loginForm: FormGroup = this._FormBuilder.group({

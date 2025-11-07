@@ -1,12 +1,19 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, NgClass],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
@@ -18,21 +25,24 @@ export class Register {
   msgSuccess: boolean = false;
   msgError: string = '';
 
-  registerForm: FormGroup = this._FormBuilder.group({
-    name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-    email: [null, [Validators.required, Validators.email]],
-    password: [
-      null,
-      [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(30),
-        Validators.pattern(/^\w{6,}$/),
+  registerForm: FormGroup = this._FormBuilder.group(
+    {
+      name: [null, [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      email: [null, [Validators.required, Validators.email]],
+      password: [
+        null,
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.maxLength(30),
+          Validators.pattern(/^\w{6,}$/),
+        ],
       ],
-    ],
-    phone: [null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]],
-    rePassword: [null],
-  });
+      phone: [null, [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]],
+      rePassword: [null, Validators.required],
+    },
+    { Validators: this.confirmPassword }
+  );
 
   registerSubmit(): void {
     if (this.registerForm.valid) {
@@ -68,5 +78,14 @@ export class Register {
 
   hasError(fieldName: string, errorType: string): boolean {
     return !!this.registerForm.get(fieldName)?.hasError(errorType);
+  }
+
+  // Custom validation for validate password and confirm password
+  confirmPassword(g: AbstractControl) {
+    if (g.get('password')?.value === g.get('rePassword')?.value) {
+      return null;
+    } else {
+      return { mismatch: true };
+    }
   }
 }

@@ -11,6 +11,14 @@
     <div class="my-3">
       <label for="email" class="mb-2">Email</label>
       <input
+        [ngClass]="{
+          'is-valid':
+          !loginForm.get('email')?.errors &&
+            (loginForm.get('email')?.touched || loginForm.get('email')?.dirty),
+          'is-invalid':
+          loginForm.get('email')?.errors &&
+            (loginForm.get('email')?.touched || loginForm.get('email')?.dirty),
+        }"
         placeholder="Enter Your Email"
         type="email"
         class="form-control"
@@ -31,6 +39,13 @@
     <div class="my-3">
       <label for="password" class="mb-2">Password</label>
       <input
+        [ngClass]="{'is-valid':
+          !loginForm.get('password')?.errors &&
+            (loginForm.get('password')?.touched || loginForm.get('password')?.dirty),
+        'is-invalid':
+          loginForm.get('password')?.errors &&
+            (loginForm.get('password')?.touched || loginForm.get('password')?.dirty),
+      }"
         placeholder="Enter Your Password"
         type="password"
         class="form-control"
@@ -57,5 +72,10 @@
         }
       </button>
     </div>
+    @if(msgError){
+    <p class="text-red-600 m-0">{{ msgError }}</p>
+    }@if (msgSuccess) {
+    <p class="text-green-600 m-0">Login Success</p>
+    }
   </form>
 </section>
