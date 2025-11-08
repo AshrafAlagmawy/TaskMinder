@@ -4,8 +4,8 @@
     <img [src]="icon" alt="To do Icon" />
     <h2 class="text-lg font-semibold text-gray-800">{{ title }}</h2>
     <span class="text-lg font-semibold ms-auto">
-      @if(tasksLength() === 1){ (
-      {{ tasksLength() }} Task ) } @else{ ( {{ tasksLength() }} Tasks ) }
+      @if(tasksLength() === 0) {( No tasks found )} @else if(tasksLength() === 1){ (
+      {{ tasksLength() }} Task ) } @else{ ( {{ tasksLength() }} Tasks )}
     </span>
   </div>
   <div

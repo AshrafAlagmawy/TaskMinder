@@ -1,10 +1,18 @@
 <!-- Search Bar -->
 <div class="input-group">
-  <input #input type="text" class="form-control bg-light border-0" placeholder="Search" />
+  <input
+    #input
+    [(ngModel)]="searchValue"
+    type="text"
+    class="form-control bg-light border-0"
+    placeholder="Search"
+  />
   <button class="btn bg-light border-0">
     <img src="./assets/icons/Search icon.svg" alt="Search Icon" />
   </button>
   <ul>
-    <li>{{ searchValue }}</li>
+    <li>
+      {{ gettingData() }}
+    </li>
   </ul>
 </div>

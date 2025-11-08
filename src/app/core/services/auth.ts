@@ -26,6 +26,7 @@ export class AuthService {
       this.userData = jwtDecode(localStorage.getItem('userToken')!);
 
       console.log('User Data : ', this.userData);
+      console.log('User Role : ', this.userData.role);
     }
   }
 

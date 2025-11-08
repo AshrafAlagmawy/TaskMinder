@@ -1,32 +1,26 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, inject, NgModule } from '@angular/core';
-import { TaskService } from '../../../features/tasks/services/task';
-import { fromEvent } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { TaskService } from './../../../features/tasks/services/task';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Task } from '../../../core/models/task.model';
 
 @Component({
   standalone: true,
   selector: 'app-search-bar',
   templateUrl: './search-bar.html',
   styleUrls: ['./search-bar.scss'],
-  imports: [],
+  imports: [FormsModule],
 })
-export class SearchBar implements AfterViewInit {
-  private taskService = inject(TaskService);
-  @ViewChild('input', { static: true }) input!: ElementRef;
-
+export class SearchBar {
   searchValue: string = '';
+  constructor(private taskService: TaskService) {}
 
-  ngAfterViewInit(): void {
-    fromEvent<InputEvent>(this.input.nativeElement, 'input')
-      .pipe(
-        map((event: InputEvent) => (event.target as HTMLInputElement).value),
-        debounceTime(300),
-        distinctUntilChanged()
-      )
-      .subscribe((searchText: string) => {
-        this.searchValue = searchText;
-        console.log('User typed : ', searchText);
-        this.taskService.filterTasks(searchText);
-      });
+  tasksData: Task[] = [];
+
+  ngOnInit(): void {
+    this.tasksData = [...this.taskService.tasks];
+  }
+
+  gettingData(): void {
+    console.log(this.searchValue);
   }
 }
