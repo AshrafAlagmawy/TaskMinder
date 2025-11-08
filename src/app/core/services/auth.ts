@@ -10,7 +10,6 @@ import { jwtDecode } from 'jwt-decode';
 })
 export class AuthService {
   private readonly _HttpClient = inject(HttpClient);
-  private readonly _Router = inject(Router);
   userData: any = null;
 
   setRegisterForm(data: object): Observable<any> {
@@ -33,6 +32,5 @@ export class AuthService {
   logOut(): void {
     localStorage.removeItem('userToken');
     this.userData = null;
-    this._Router.navigate(['login']);
   }
 }

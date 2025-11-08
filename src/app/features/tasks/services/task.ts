@@ -42,6 +42,7 @@ export class TaskService {
   showModal = false;
   editingTask: Task | null = null;
   public _tasks = signal<Task[]>([]);
+  public searchInput = signal<string>('');
   titleError: boolean = false;
   descriptionError: boolean = false;
 
@@ -123,7 +124,25 @@ export class TaskService {
   }
 
   getTask(status: string) {
-    return this._tasks().filter((t) => t.status === status);
+    const tasksByStatus = this._tasks().filter((t) => t.status === status);
+    const searchInput = this.searchInput().toLowerCase().trim();
+
+    if (!searchInput) return tasksByStatus;
+
+    return tasksByStatus.filter((task) => {
+      return (
+        task.title.toLowerCase().includes(searchInput) ||
+        task.description.toLowerCase().includes(searchInput)
+      );
+    });
+  }
+
+  setSearchInput(search: string): void {
+    this.searchInput.set(search);
+  }
+
+  clearSearchInput(): void {
+    this.searchInput.set('');
   }
 
   updateTaskStatus(taskId: number, newStatus: 'todo' | 'in-progress' | 'done'): void {
@@ -148,18 +167,6 @@ export class TaskService {
           task.description.toLowerCase().trim() === description.toLowerCase().trim()) &&
         excludeId !== task.id
       );
-    });
-  }
-
-  // Filter tasks for search bar
-  filterTasks(search: string): Task[] {
-    const searchWord = search.toLowerCase().trim();
-
-    if (!searchWord) return this._tasks();
-
-    return this._tasks().filter((task) => {
-      task.title.toLowerCase().includes(searchWord) ||
-        task.description.toLowerCase().includes(searchWord);
     });
   }
 }

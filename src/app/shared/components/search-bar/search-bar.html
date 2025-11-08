@@ -3,16 +3,12 @@
   <input
     #input
     [(ngModel)]="searchValue"
+    (ngModelChange)="onSearchChange()"
     type="text"
     class="form-control bg-light border-0"
-    placeholder="Search"
+    placeholder="Search with task title or description"
   />
   <button class="btn bg-light border-0">
     <img src="./assets/icons/Search icon.svg" alt="Search Icon" />
   </button>
-  <ul>
-    <li>
-      {{ gettingData() }}
-    </li>
-  </ul>
 </div>

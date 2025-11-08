@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, ElementRef, inject, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchBar } from '../search-bar/search-bar';
 import { RouterLink } from '@angular/router';
@@ -13,6 +13,7 @@ import { AuthService } from '../../../core/services/auth';
 })
 export class Header {
   private readonly _AuthService = inject(AuthService);
+  private elementRef = inject(ElementRef<HTMLElement>);
 
   showMenu = false;
 
@@ -22,5 +23,14 @@ export class Header {
 
   logOut(): void {
     this._AuthService.logOut();
+  }
+
+  // Handling the click over menu
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const clickInside = this.elementRef.nativeElement.contains(event.target);
+    if (!clickInside && this.showMenu) {
+      this.showMenu = false;
+    }
   }
 }

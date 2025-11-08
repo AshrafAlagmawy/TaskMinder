@@ -16,7 +16,7 @@
     (cdkDropListDropped)="onDrop($event)"
     class="space-y-3"
   >
-    @for (task of taskService.getTask(taskStatus); track task.id) {
+    @for (task of tasks; track task.id) {
     <app-task-card [task]="task"></app-task-card>
     } @empty {
     <div class="text-center p-4 text-gray-400 italic">{{ emptyMsg }}</div>

@@ -1,7 +1,6 @@
 import { TaskService } from './../../../features/tasks/services/task';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Task } from '../../../core/models/task.model';
 
 @Component({
   standalone: true,
@@ -11,16 +10,11 @@ import { Task } from '../../../core/models/task.model';
   imports: [FormsModule],
 })
 export class SearchBar {
+  constructor(public taskService: TaskService) {}
+
   searchValue: string = '';
-  constructor(private taskService: TaskService) {}
 
-  tasksData: Task[] = [];
-
-  ngOnInit(): void {
-    this.tasksData = [...this.taskService.tasks];
-  }
-
-  gettingData(): void {
-    console.log(this.searchValue);
+  onSearchChange(): void {
+    this.taskService.setSearchInput(this.searchValue);
   }
 }
