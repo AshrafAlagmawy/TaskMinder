@@ -24,21 +24,23 @@
         }"
           placeholder="Enter Your Name"
           type="text"
-          class="form-control"
+          class="mb-2 form-control"
           id="name"
           formControlName="name"
         />
-        @if(isFieldValid("name")){
-        <div class="alert alert-danger w-auto m-2 p-2">
-          @if(hasError("name","required")){
-          <p class="m-0">Name is required</p>
-          }@else if(hasError("name","minlength")){
-          <p class="m-0">Name must be greater than 3 characters</p>
-          } @else if(hasError("name","maxlength")){
-          <p class="m-0">Name must be less than 30 characters</p>
+        <div class="errorsContainer">
+          @if(isFieldValid("name")){
+          <div class="errorContainer alert alert-danger w-auto m-0 p-1">
+            @if(hasError("name","required")){
+            <p class="m-0">Name is required</p>
+            }@else if(hasError("name","minlength")){
+            <p class="m-0">Name must be greater than 3 characters</p>
+            } @else if(hasError("name","maxlength")){
+            <p class="m-0">Name must be less than 30 characters</p>
+            }
+          </div>
           }
         </div>
-        }
       </div>
 
       <div class="my-3">
@@ -56,19 +58,21 @@
         }"
           placeholder="Enter Your Email"
           type="email"
-          class="form-control"
+          class="mb-2 form-control"
           id="email"
           formControlName="email"
         />
-        @if(isFieldValid("email")){
-        <div class="alert alert-danger w-auto m-2 p-2">
-          @if(hasError("email","required")){
-          <p class="m-0">Email is required</p>
-          }@else if(hasError("email","email")){
-          <p class="m-0">Email valid email</p>
+        <div class="errorsContainer">
+          @if(isFieldValid("email")){
+          <div class="errorContainer alert alert-danger w-auto m-0 p-1">
+            @if(hasError("email","required")){
+            <p class="m-0">Email is required</p>
+            }@else if(hasError("email","email")){
+            <p class="m-0">Email valid email</p>
+            }
+          </div>
           }
         </div>
-        }
       </div>
 
       <div class="my-3">
@@ -86,19 +90,21 @@
         }"
           placeholder="Enter Your Phone Number"
           type="tel"
-          class="form-control"
+          class="mb-2 form-control"
           id="phone"
           formControlName="phone"
         />
-        @if(isFieldValid("phone")){
-        <div class="alert alert-danger w-auto m-2 p-2">
-          @if(hasError("phone","required")){
-          <p class="m-0">Phone Number is required</p>
-          } @else if(hasError("phone","pattern")){
-          <p class="m-0">Enter valid phone number</p>
+        <div class="errorsContainer">
+          @if(isFieldValid("phone")){
+          <div class="errorContainer alert alert-danger w-auto m-0 p-1">
+            @if(hasError("phone","required")){
+            <p class="m-0">Phone Number is required</p>
+            } @else if(hasError("phone","pattern")){
+            <p class="m-0">Enter valid phone number</p>
+            }
+          </div>
           }
         </div>
-        }
       </div>
 
       <div class="my-3">
@@ -116,19 +122,21 @@
         }"
           placeholder="Enter Your Password"
           type="password"
-          class="form-control"
+          class="mb-2 form-control"
           id="password"
           formControlName="password"
         />
-        @if(isFieldValid("password")){
-        <div class="alert alert-danger w-auto m-2 p-2">
-          @if(hasError("password","required")){
-          <p class="m-0">Password is required</p>
-          }@else if(hasError("password","pattern")){
-          <p class="m-0">Enter valid password</p>
+        <div class="errorsContainer">
+          @if(isFieldValid("password")){
+          <div class="errorContainer alert alert-danger w-auto m-0 p-1">
+            @if(hasError("password","required")){
+            <p class="m-0">Password is required</p>
+            }@else if(hasError("password","pattern")){
+            <p class="m-0">Enter valid password</p>
+            }
+          </div>
           }
         </div>
-        }
       </div>
 
       <div class="my-3">
@@ -146,13 +154,15 @@
         }"
           placeholder="Enter Your Password Again For Confirmation"
           type="password"
-          class="form-control"
+          class="mb-2 form-control"
           id="rePassword"
           formControlName="rePassword"
         />
-        @if(registerForm.getError('mismatch')&&registerForm.get("rePassword")?.touched){
-        <p class="m-0">Password confirmations is incorrect</p>
-        }
+        <div class="errorsContainer">
+          @if(registerForm.getError('mismatch')&&registerForm.get("rePassword")?.touched){
+          <p class="errorContainer m-0 p-1">Password confirmations is incorrect</p>
+          }
+        </div>
       </div>
 
       <div class="d-flex justify-content-end ms-auto gap-2">

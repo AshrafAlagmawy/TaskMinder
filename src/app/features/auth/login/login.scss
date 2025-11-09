@@ -12,3 +12,15 @@ button:hover {
   background-color: #5a67bb;
   color: white;
 }
+
+.errorsContainer {
+  min-height: 32px;
+}
+
+.errorContainer {
+  min-height: 32px;
+}
+
+.errorContainer:empty {
+  min-height: 32px;
+}

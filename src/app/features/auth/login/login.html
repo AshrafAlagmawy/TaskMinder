@@ -22,19 +22,21 @@
         }"
           placeholder="Enter Your Email"
           type="email"
-          class="form-control"
+          class="mb-2 form-control"
           id="email"
           formControlName="email"
         />
-        @if(isFieldValid("email")){
-        <div class="alert alert-danger w-auto m-2 p-2">
-          @if(hasError("email","required")){
-          <p class="m-0">Email is required</p>
-          }@else if(hasError("email","email")){
-          <p class="m-0">Enter valid email</p>
+        <div class="errorsContainer">
+          @if(isFieldValid("email")){
+          <div class="errorContainer alert alert-danger w-auto m-0 p-1">
+            @if(hasError("email","required")){
+            <p class="m-0">Email is required</p>
+            }@else if(hasError("email","email")){
+            <p class="m-0">Enter valid email</p>
+            }
+          </div>
           }
         </div>
-        }
       </div>
 
       <div class="my-3">
@@ -49,19 +51,21 @@
       }"
           placeholder="Enter Your Password"
           type="password"
-          class="form-control"
+          class="mb-2 form-control"
           id="password"
           formControlName="password"
         />
-        @if(isFieldValid("password")){
-        <div class="alert alert-danger w-auto m-2 p-2">
-          @if(hasError("password","required")){
-          <p class="m-0">Password is required</p>
-          }@else if(hasError("password","pattern")){
-          <p class="m-0">Enter valid password</p>
+        <div class="errorsContainer">
+          @if(isFieldValid("password")){
+          <div class="errorContainer alert alert-danger w-auto m-0 p-1">
+            @if(hasError("password","required")){
+            <p class="m-0">Password is required</p>
+            }@else if(hasError("password","pattern")){
+            <p class="m-0">Enter valid password</p>
+            }
+          </div>
           }
         </div>
-        }
       </div>
 
       <div class="d-flex justify-content-end ms-auto gap-2">
