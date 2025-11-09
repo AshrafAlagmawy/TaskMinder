@@ -9,9 +9,9 @@
   >
     <app-task-column
       title="To do"
-      titleColor="#14367B"
+      titleColor="var(--todo-task-title-color)"
       icon="./assets/icons/Card status icon (1).svg"
-      backgroundColor="#CAD9F6"
+      backgroundColor="var(--todo-task-background-color)"
       taskStatus="todo"
       emptyMsg="No tasks yet"
       [dropListId]="'todo'"
@@ -21,9 +21,9 @@
 
     <app-task-column
       title="In progress"
-      titleColor="#8F4F00"
+      titleColor="var(--in-progress-task-title-color)"
       icon="./assets/icons/Card status icon (2).svg"
-      backgroundColor="#FFE4C2"
+      backgroundColor="var(--in-progress-task-background-color)"
       taskStatus="in-progress"
       emptyMsg="No tasks in progress"
       [dropListId]="'in-progress'"
@@ -33,9 +33,9 @@
 
     <app-task-column
       title="Done"
-      titleColor="#81290E"
+      titleColor="var(--done-task-title-color)"
       icon="./assets/icons/Card status icon.svg"
-      backgroundColor="#FAD0C6"
+      backgroundColor="var(--done-task-background-color)"
       taskStatus="done"
       emptyMsg="All tasks done 🎉"
       [dropListId]="'done'"

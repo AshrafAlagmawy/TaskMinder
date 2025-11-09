@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
@@ -15,9 +15,9 @@ export class Login {
   private readonly _AuthService = inject(AuthService);
   private readonly _Router = inject(Router);
   private readonly _FormBuilder = inject(FormBuilder);
-  isLoading: boolean = false;
-  msgSuccess: boolean = false;
-  msgError: string = '';
+  isLoading = signal<boolean>(false);
+  msgSuccess = signal<boolean>(false);
+  msgError = signal<string>('');
 
   loginForm: FormGroup = this._FormBuilder.group({
     email: [null, [Validators.required, Validators.email]],
@@ -26,13 +26,13 @@ export class Login {
 
   loginSubmit(): void {
     if (this.loginForm.valid) {
-      this.isLoading = true;
+      this.isLoading.set(true);
 
       this._AuthService.setLoginForm(this.loginForm.value).subscribe({
         next: (response) => {
           console.log(response);
           if (response.message === 'success') {
-            this.msgSuccess = true;
+            this.msgSuccess.set(true);
             setTimeout(() => {
               // 1. Save token to local storage
               localStorage.setItem('userToken', response.token);
@@ -41,12 +41,12 @@ export class Login {
               this._Router.navigate(['/tasks']);
             }, 1000);
           }
-          this.isLoading = false;
+          this.isLoading.set(false);
         },
         error: (err: HttpErrorResponse) => {
           console.log(err.error.message);
-          this.msgError = err.error.message;
-          this.isLoading = false;
+          this.msgError.set(err.error.message);
+          this.isLoading.set(false);
         },
       });
     } else {

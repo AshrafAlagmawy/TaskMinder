@@ -168,16 +168,16 @@
       <div class="d-flex justify-content-end ms-auto gap-2">
         <button routerLink="/login" type="button" class="btn d-block">Login</button>
 
-        <button [disabled]="registerForm.invalid || isLoading" type="submit" class="btn d-block">
-          Register @if(isLoading){
+        <button [disabled]="registerForm.invalid || isLoading()" type="submit" class="btn d-block">
+          Register @if(isLoading()){
           <span><i class="fas fa-spin fa-spinner"></i></span>
           }
         </button>
       </div>
-      @if(msgError){
-      <p class="text-red-600 m-0">{{ msgError }}</p>
-      } @if(msgSuccess){
-      <p class="text-green-600 m-0">Login Success</p>
+      @if(msgError()){
+      <p class="text-red-600 m-0">{{ msgError() }}</p>
+      } @if(msgSuccess()){
+      <p class="text-green-600 m-0">Register Success</p>
       }
     </form>
   </section>

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -21,9 +21,9 @@ export class Register {
   private readonly _AuthService = inject(AuthService);
   private readonly _FormBuilder = inject(FormBuilder);
   private readonly _Router = inject(Router);
-  isLoading: boolean = false;
-  msgSuccess: boolean = false;
-  msgError: string = '';
+  isLoading = signal<boolean>(false);
+  msgSuccess = signal<boolean>(false);
+  msgError = signal<string>('');
 
   registerForm: FormGroup = this._FormBuilder.group(
     {
@@ -46,24 +46,24 @@ export class Register {
 
   registerSubmit(): void {
     if (this.registerForm.valid) {
-      this.isLoading = true;
+      this.isLoading.set(true);
 
       this._AuthService.setRegisterForm(this.registerForm.value).subscribe({
         next: (response) => {
           console.log(response);
 
           if (response.message === 'success') {
-            this.msgSuccess = true;
+            this.msgSuccess.set(true);
             setTimeout(() => {
               this._Router.navigate(['/login']);
             }, 1000);
           }
-          this.isLoading = false;
+          this.isLoading.set(false);
         },
         error: (err: HttpErrorResponse) => {
           console.log(err.message);
-          this.msgError = err.error.message;
-          this.isLoading = false;
+          this.msgError.set(err.error.message);
+          this.isLoading.set(false);
         },
       });
     } else {

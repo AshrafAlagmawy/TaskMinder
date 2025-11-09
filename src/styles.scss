@@ -6,6 +6,21 @@ body {
     Arial, sans-serif;
 }
 
+:root {
+  // Tasks Colors
+  --todo-task-title-color: #14367b;
+  --in-progress-task-title-color: #8f4f00;
+  --done-task-title-color: #81290e;
+
+  --todo-task-background-color: #cad9f6;
+  --in-progress-task-background-color: #ffe4c2;
+  --done-task-background-color: #fad0c6;
+
+  // Sidebar
+  --sidebar-blue-color: #2563eb;
+  --sidebar-brown-color: #7b2c17;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

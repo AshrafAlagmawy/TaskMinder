@@ -40,11 +40,11 @@
 
     &:hover {
       background-color: #e8edff;
-      color: #2563eb;
+      color: var(--sidebar-blue-color);
     }
 
     &.active {
-      background-color: #2563eb;
+      background-color: var(--sidebar-blue-color);
       color: #ffffff !important;
       font-weight: 500;
     }
@@ -54,13 +54,13 @@
     padding: 0;
 
     &:hover {
-      color: #7b2c17 !important;
+      color: var(--sidebar-brown-color) !important;
       background-color: #ffe8e0 !important;
     }
   }
 
   .logout {
-    color: #7b2c17;
+    color: var(--sidebar-brown-color);
     transition: all 0.2s;
     background-color: #fff3ef;
     width: 100%;

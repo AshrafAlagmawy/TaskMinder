@@ -1,4 +1,4 @@
-import { Component, HostListener, ElementRef, inject, Inject } from '@angular/core';
+import { Component, HostListener, ElementRef, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchBar } from '../search-bar/search-bar';
 import { RouterLink } from '@angular/router';
@@ -15,10 +15,10 @@ export class Header {
   private readonly _AuthService = inject(AuthService);
   private elementRef = inject(ElementRef<HTMLElement>);
 
-  showMenu = false;
+  showMenu = signal<boolean>(false);
 
   toggleMenu(): void {
-    this.showMenu = !this.showMenu;
+    this.showMenu.set(!this.showMenu);
   }
 
   logOut(): void {
@@ -30,7 +30,7 @@ export class Header {
   onDocumentClick(event: MouseEvent): void {
     const clickInside = this.elementRef.nativeElement.contains(event.target);
     if (!clickInside && this.showMenu) {
-      this.showMenu = false;
+      this.showMenu.set(false);
     }
   }
 }

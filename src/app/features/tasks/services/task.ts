@@ -38,26 +38,26 @@ export class TaskService {
     this.loadTasks();
   }
 
-  localStorageKey: string = 'tasks';
-  showModal = false;
+  localStorageKey = signal<string>('tasks');
+  showModal = signal<boolean>(false);
   editingTask: Task | null = null;
   public _tasks = signal<Task[]>([]);
   public searchInput = signal<string>('');
-  titleError: boolean = false;
-  descriptionError: boolean = false;
+  titleError = signal<boolean>(false);
+  descriptionError = signal<boolean>(false);
 
   private loadTasks() {
-    const storedTasks = this.storage.getItem<Task[]>(this.localStorageKey);
+    const storedTasks = this.storage.getItem<Task[]>(this.localStorageKey());
     if (storedTasks && storedTasks.length > 0) this._tasks.set(storedTasks);
   }
 
   private saveTasksInLocalStorage() {
-    this.storage.setItem(this.localStorageKey, this._tasks());
+    this.storage.setItem(this.localStorageKey(), this._tasks());
   }
 
   clearAllTasks(): void {
     this._tasks.set([]);
-    this.storage.removeItem(this.localStorageKey);
+    this.storage.removeItem(this.localStorageKey());
   }
 
   get tasks(): Task[] {
@@ -67,7 +67,7 @@ export class TaskService {
   taskData: Partial<Task> = {};
 
   closeModal() {
-    this.showModal = false;
+    this.showModal.set(false);
     this.taskData = {};
     this.editingTask = null;
   }
@@ -78,9 +78,9 @@ export class TaskService {
 
     // Handling duplicate tasks
     if (this.findingDuplicateTasks(title, description, this.editingTask?.id)) {
-      if (this.titleError && this.descriptionError) {
+      if (this.titleError() && this.descriptionError()) {
         alert('Task title and task description has been exists before');
-      } else if (this.titleError) {
+      } else if (this.titleError()) {
         alert('Task title has been exists before');
       } else {
         alert('Task description has been exists before');
@@ -113,7 +113,7 @@ export class TaskService {
   }
 
   openModal(task?: Task) {
-    this.showModal = true;
+    this.showModal.set(true);
     this.taskData = task ? { ...task } : { status: 'todo' };
     this.editingTask = task || null;
   }
@@ -158,9 +158,10 @@ export class TaskService {
     }
 
     return this._tasks().some((task) => {
-      this.titleError = task.title.toLowerCase().trim() === title.toLowerCase().trim();
-      this.descriptionError =
-        task.description.toLowerCase().trim() === description.toLowerCase().trim();
+      this.titleError.set(task.title.toLowerCase().trim() === title.toLowerCase().trim());
+      this.descriptionError.set(
+        task.description.toLowerCase().trim() === description.toLowerCase().trim()
+      );
 
       return (
         (task.title.toLowerCase().trim() === title.toLowerCase().trim() ||

@@ -57,7 +57,7 @@
         />
         <div class="errorsContainer">
           @if(isFieldValid("password")){
-          <div class="errorContainer alert alert-danger w-auto m-0 p-1">
+          <div class="errorContainer alert alert-danger w-auto m-0 p-2">
             @if(hasError("password","required")){
             <p class="m-0">Password is required</p>
             }@else if(hasError("password","pattern")){
@@ -71,15 +71,15 @@
       <div class="d-flex justify-content-end ms-auto gap-2">
         <button routerLink="/register" type="button" class="btn d-block">Register</button>
 
-        <button [disabled]="loginForm.invalid || isLoading" type="submit" class="btn d-block">
-          Login @if(isLoading){
+        <button [disabled]="loginForm.invalid || isLoading()" type="submit" class="btn d-block">
+          Login @if(isLoading()){
           <span><i class="fas fa-spin fa-spinner"></i></span>
           }
         </button>
       </div>
-      @if(msgError){
-      <p class="text-red-600 m-0">{{ msgError }}</p>
-      }@if (msgSuccess) {
+      @if(msgError()){
+      <p class="text-red-600 m-0">{{ msgError() }}</p>
+      }@if (msgSuccess()) {
       <p class="text-green-600 m-0">Login Success</p>
       }
     </form>
