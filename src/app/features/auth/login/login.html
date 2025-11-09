@@ -1,17 +1,18 @@
-<section class="bg-main-light shadow my-5 p-3 rounded-4 w-50 m-auto">
-  <div>
-    <div class="logo p-3 d-flex justify-content-center align-items-center gap-2 mb-3">
-      <img src="/assets/icons/Rectangle 11 (Stroke).png" alt="TaskMinder Logo" />
-      <span class="fs-5 fw-semibold">TaskMinder.</span>
+<div class="min-vh-100 d-flex justify-content-center align-items-center">
+  <section class="bg-main-light shadow my-5 p-3 rounded-4 w-50 m-auto">
+    <div>
+      <div class="logo p-3 d-flex justify-content-center align-items-center gap-2 mb-3">
+        <img src="/assets/icons/Rectangle 11 (Stroke).png" alt="TaskMinder Logo" />
+        <span class="fs-5 fw-semibold">TaskMinder.</span>
+      </div>
+      <h2 class="text-center text-2xl font-semibold text-indigo-600 mb-6">Login</h2>
     </div>
-    <h2 class="text-center text-2xl font-semibold text-indigo-600 mb-6">Login</h2>
-  </div>
 
-  <form action="" [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
-    <div class="my-3">
-      <label for="email" class="mb-2">Email</label>
-      <input
-        [ngClass]="{
+    <form action="" [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+      <div class="my-3">
+        <label for="email" class="mb-2">Email</label>
+        <input
+          [ngClass]="{
           'is-valid':
           !loginForm.get('email')?.errors &&
             (loginForm.get('email')?.touched || loginForm.get('email')?.dirty),
@@ -19,63 +20,64 @@
           loginForm.get('email')?.errors &&
             (loginForm.get('email')?.touched || loginForm.get('email')?.dirty),
         }"
-        placeholder="Enter Your Email"
-        type="email"
-        class="form-control"
-        id="email"
-        formControlName="email"
-      />
-      @if(isFieldValid("email")){
-      <div class="alert alert-danger w-auto m-2 p-2">
-        @if(hasError("email","required")){
-        <p class="m-0">Email is required</p>
-        }@else if(hasError("email","email")){
-        <p class="m-0">Enter valid email</p>
+          placeholder="Enter Your Email"
+          type="email"
+          class="form-control"
+          id="email"
+          formControlName="email"
+        />
+        @if(isFieldValid("email")){
+        <div class="alert alert-danger w-auto m-2 p-2">
+          @if(hasError("email","required")){
+          <p class="m-0">Email is required</p>
+          }@else if(hasError("email","email")){
+          <p class="m-0">Enter valid email</p>
+          }
+        </div>
         }
       </div>
-      }
-    </div>
 
-    <div class="my-3">
-      <label for="password" class="mb-2">Password</label>
-      <input
-        [ngClass]="{'is-valid':
+      <div class="my-3">
+        <label for="password" class="mb-2">Password</label>
+        <input
+          [ngClass]="{'is-valid':
           !loginForm.get('password')?.errors &&
             (loginForm.get('password')?.touched || loginForm.get('password')?.dirty),
         'is-invalid':
           loginForm.get('password')?.errors &&
             (loginForm.get('password')?.touched || loginForm.get('password')?.dirty),
       }"
-        placeholder="Enter Your Password"
-        type="password"
-        class="form-control"
-        id="password"
-        formControlName="password"
-      />
-      @if(isFieldValid("password")){
-      <div class="alert alert-danger w-auto m-2 p-2">
-        @if(hasError("password","required")){
-        <p class="m-0">Password is required</p>
-        }@else if(hasError("password","pattern")){
-        <p class="m-0">Enter valid password</p>
+          placeholder="Enter Your Password"
+          type="password"
+          class="form-control"
+          id="password"
+          formControlName="password"
+        />
+        @if(isFieldValid("password")){
+        <div class="alert alert-danger w-auto m-2 p-2">
+          @if(hasError("password","required")){
+          <p class="m-0">Password is required</p>
+          }@else if(hasError("password","pattern")){
+          <p class="m-0">Enter valid password</p>
+          }
+        </div>
         }
       </div>
+
+      <div class="d-flex justify-content-end ms-auto gap-2">
+        <button routerLink="/register" type="button" class="btn d-block">Register</button>
+
+        <button [disabled]="loginForm.invalid || isLoading" type="submit" class="btn d-block">
+          Login @if(isLoading){
+          <span><i class="fas fa-spin fa-spinner"></i></span>
+          }
+        </button>
+      </div>
+      @if(msgError){
+      <p class="text-red-600 m-0">{{ msgError }}</p>
+      }@if (msgSuccess) {
+      <p class="text-green-600 m-0">Login Success</p>
       }
-    </div>
-
-    <div class="d-flex justify-content-end ms-auto gap-2">
-      <button routerLink="/register" type="button" class="btn d-block">Register</button>
-
-      <button [disabled]="loginForm.invalid || isLoading" type="submit" class="btn d-block">
-        Login @if(isLoading){
-        <span><i class="fas fa-spin fa-spinner"></i></span>
-        }
-      </button>
-    </div>
-    @if(msgError){
-    <p class="text-red-600 m-0">{{ msgError }}</p>
-    }@if (msgSuccess) {
-    <p class="text-green-600 m-0">Login Success</p>
-    }
-  </form>
-</section>
+    </form>
+  </section>
+</div>

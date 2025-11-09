@@ -15,14 +15,14 @@ const dummyData: Task[] = [
     title: 'Task 1',
     description: 'Assigned to Mohamed',
     status: 'in-progress',
-    assigneeImage: 'https://i.pravatar.cc/150?img=1',
+    assigneeImage: 'https://i.pravatar.cc/150?img=2',
   },
   {
     id: Date.now() + 2,
     title: 'Task 3',
     description: 'Assigned to Belal',
     status: 'done',
-    assigneeImage: 'https://i.pravatar.cc/150?img=1',
+    assigneeImage: 'https://i.pravatar.cc/150?img=3',
   },
 ];
 
