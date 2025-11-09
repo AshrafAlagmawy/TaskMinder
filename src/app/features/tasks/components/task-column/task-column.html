@@ -1,8 +1,10 @@
 <!-- Three Columns Layout (Todo / In Progress / Done) -->
-<div class="rounded-lg p-4" [ngClass]="backgroundColor">
+<div class="rounded-lg p-4" [ngStyle]="{ 'background-color': backgroundColor }">
   <div class="flex items-center gap-2 mb-4">
     <img [src]="icon" alt="To do Icon" />
-    <h2 class="text-lg font-semibold text-gray-800">{{ title }}</h2>
+    <h2 [ngStyle]="{ color: titleColor }" class="text-lg font-semibold text-gray-800">
+      {{ title }}
+    </h2>
     <span class="text-lg font-semibold ms-auto">
       @if(tasksLength() === 0) {( No tasks found )} @else if(tasksLength() === 1){ (
       {{ tasksLength() }} Task ) } @else{ ( {{ tasksLength() }} Tasks )}

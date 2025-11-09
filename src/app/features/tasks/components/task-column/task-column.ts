@@ -15,6 +15,7 @@ export class TaskColumn {
   @Input() backgroundColor: string = '';
   @Input() icon: string = '';
   @Input() title: string = '';
+  @Input() titleColor: string = '';
   @Input() taskStatus: string = '';
   @Input() emptyMsg: string = '';
   @Input() dropListId: string = '';
