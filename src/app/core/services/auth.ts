@@ -1,7 +1,6 @@
 import { environment } from './../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 
@@ -31,6 +30,7 @@ export class AuthService {
 
   logOut(): void {
     localStorage.removeItem('userToken');
+    localStorage.removeItem('userRole');
     this.userData = null;
   }
 }

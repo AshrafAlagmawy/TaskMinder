@@ -3,12 +3,14 @@
     <img [src]="task.assigneeImage" alt="User" class="w-10 h-10 rounded-full" />
     <div class="flex gap-2">
       <button
+        appNewTask
         (click)="taskService.openModal(task)"
         class="p-1.5 hover:bg-gray-100 rounded transition-colors"
       >
         <img src="./assets/icons/edit.svg" alt="Edit Icon" />
       </button>
       <button
+        appNewTask
         (click)="taskService.deleteTask(task.id)"
         class="p-1.5 hover:bg-red-50 rounded transition-colors"
       >

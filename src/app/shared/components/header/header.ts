@@ -18,7 +18,7 @@ export class Header {
   showMenu = signal<boolean>(false);
 
   toggleMenu(): void {
-    this.showMenu.set(!this.showMenu);
+    this.showMenu.set(!this.showMenu());
   }
 
   logOut(): void {
@@ -29,7 +29,7 @@ export class Header {
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     const clickInside = this.elementRef.nativeElement.contains(event.target);
-    if (!clickInside && this.showMenu) {
+    if (!clickInside && this.showMenu()) {
       this.showMenu.set(false);
     }
   }
