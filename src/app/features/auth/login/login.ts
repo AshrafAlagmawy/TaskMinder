@@ -4,17 +4,22 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgClass } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { LanguageService } from '../../../core/services/language';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, RouterLink, NgClass],
+  imports: [TranslateModule, ReactiveFormsModule, RouterLink, NgClass],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
 export class Login {
+  constructor(private translate: TranslateService) {}
+
   private readonly _AuthService = inject(AuthService);
   private readonly _Router = inject(Router);
   private readonly _FormBuilder = inject(FormBuilder);
+
   isLoading = signal<boolean>(false);
   msgSuccess = signal<boolean>(false);
   msgError = signal<string>('');

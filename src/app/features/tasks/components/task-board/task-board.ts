@@ -8,16 +8,25 @@ import { TaskModal } from '../task-modal/task-modal';
 // Using Angular CDK Library
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-task-board',
   standalone: true,
   templateUrl: './task-board.html',
   styleUrls: ['./task-board.scss'],
-  imports: [CommonModule, FormsModule, TaskColumn, TaskHeader, TaskModal, DragDropModule],
+  imports: [
+    TranslateModule,
+    CommonModule,
+    FormsModule,
+    TaskColumn,
+    TaskHeader,
+    TaskModal,
+    DragDropModule,
+  ],
 })
 export class TaskBoard {
-  constructor(public taskService: TaskService) {}
+  constructor(public taskService: TaskService, private translate: TranslateService) {}
 
   dropListIds = signal<string[]>(['todo', 'in-progress', 'done']);
 

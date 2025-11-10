@@ -2,9 +2,9 @@ import { AfterViewInit, Directive, ElementRef, Renderer2, signal } from '@angula
 import { UserRole } from '../../core/enums/user-role.enum';
 
 @Directive({
-  selector: '[appNewTask]',
+  selector: '[AdminOnly]',
 })
-export class NewTask implements AfterViewInit {
+export class AdminOnly implements AfterViewInit {
   constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
 
   userRole = signal<string>(localStorage.getItem('userRole')!);

@@ -10,6 +10,14 @@
       <div class="col-md-6">
         <div class="d-flex align-items-center justify-content-end gap-3">
           <button
+            (click)="changeLanguage()"
+            class="btn btn-light position-relative p-2 rounded-circle"
+            style="width: 40px; height: 40px"
+          >
+            <i class="fa-solid fa-language"></i>
+          </button>
+
+          <button
             class="btn btn-light position-relative p-2 rounded-circle"
             style="width: 40px; height: 40px"
           >
@@ -30,28 +38,28 @@
             <!-- Drop Down Menu -->
             @if(showMenu()){
             <div
-              class="absolute right-0 mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg z-50 overflow-hidden"
+              class="rtl:left-0 rtl:right-auto absolute right-0 mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg z-50 overflow-hidden"
             >
               <div class="py-2">
                 <button
                   routerLink="edit-profile"
                   class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
-                  Edit Profile
+                  {{ 'Edit Profile' | translate }}
                 </button>
                 <button
                   (click)="logOut()"
                   routerLink="login"
                   class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
-                  Login
+                  {{ 'Login' | translate }}
                 </button>
                 <button
                   (click)="logOut()"
                   routerLink="register"
                   class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
-                  Register
+                  {{ 'Register' | translate }}
                 </button>
               </div>
             </div>

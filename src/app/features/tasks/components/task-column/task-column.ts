@@ -3,11 +3,12 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule, NgClass } from '@angular/common';
 import { DragDropModule, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { TaskCard } from '../task-card/task-card';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-task-column',
   standalone: true,
-  imports: [CommonModule, NgClass, DragDropModule, TaskCard],
+  imports: [TranslateModule, CommonModule, NgClass, DragDropModule, TaskCard],
   templateUrl: './task-column.html',
   styleUrl: './task-column.scss',
 })
@@ -22,7 +23,7 @@ export class TaskColumn {
   @Input() connectedDropLists: string[] = [];
   @Output() taskDropped = new EventEmitter<{ event: CdkDragDrop<any[]>; status: string }>();
 
-  constructor(public taskService: TaskService) {}
+  constructor(public taskService: TaskService, private translate: TranslateService) {}
 
   get tasks() {
     return this.taskService.getTask(this.taskStatus);

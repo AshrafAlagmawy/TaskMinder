@@ -10,14 +10,16 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgClass } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule, RouterLink, NgClass],
+  imports: [TranslateModule, ReactiveFormsModule, RouterLink, NgClass],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
 export class Register {
+  constructor(private translate: TranslateService) {}
   private readonly _AuthService = inject(AuthService);
   private readonly _FormBuilder = inject(FormBuilder);
   private readonly _Router = inject(Router);

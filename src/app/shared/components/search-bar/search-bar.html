@@ -6,7 +6,7 @@
     (ngModelChange)="onSearchChange()"
     type="text"
     class="form-control bg-light border-0"
-    placeholder="Search with task title or description"
+    [placeholder]="'Search with task title or description' | translate"
   />
   <button class="btn bg-light border-0">
     <img src="./assets/icons/Search icon.svg" alt="Search Icon" />

@@ -6,8 +6,12 @@
 >
   <div class="bg-white rounded-xl shadow-2xl w-full max-w-2xl" (click)="$event.stopPropagation()">
     <div class="flex items-center justify-between p-6 border-b">
-      <h2 class="text-2xl font-bold">New Task</h2>
-      <button (click)="taskService.closeModal()" class="p-2 hover:bg-gray-100 rounded-lg">
+      <h2 class="text-2xl font-bold">{{ 'New task' | translate }}</h2>
+      <button
+        (click)="taskService.closeModal()"
+        class="p-2 hover:bg-gray-100 rounded-lg"
+        aria-label="{{ 'Close' | translate }}"
+      >
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             stroke-linecap="round"
@@ -18,54 +22,50 @@
         </svg>
       </button>
     </div>
+
     <div class="p-6">
-      <!-- Before Developing The Task Input -->
-      <!-- <p class="text-gray-600">Modal content in development</p> -->
-      <div class="p-6">
-        <form (ngSubmit)="taskService.saveTask()" #taskForm="ngForm" class="space-y-4">
-          <div>
-            <label class="block text-sm font-medium mb-1">Task Name</label>
-            <input
-              type="text"
-              [(ngModel)]="taskService.taskData.title"
-              name="title"
-              required
-              class="w-full border border-gray-300 rounded-lg px-3 py-2"
-            />
-          </div>
+      <form (ngSubmit)="taskService.saveTask()" #taskForm="ngForm" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1">{{ 'Task Name' | translate }}</label>
+          <input
+            type="text"
+            [(ngModel)]="taskService.taskData.title"
+            name="title"
+            required
+            class="w-full border border-gray-300 rounded-lg px-3 py-2"
+            [placeholder]="'Enter task name' | translate"
+          />
+        </div>
 
-          <div>
-            <label class="block text-sm font-medium mb-1">Task Description</label>
-            <textarea
-              [(ngModel)]="taskService.taskData.description"
-              name="description"
-              required
-              class="w-full border border-gray-300 rounded-lg px-3 py-2"
-            ></textarea>
-          </div>
+        <div>
+          <label class="block text-sm font-medium mb-1">{{ 'Task Description' | translate }}</label>
+          <textarea
+            [(ngModel)]="taskService.taskData.description"
+            name="description"
+            required
+            class="w-full border border-gray-300 rounded-lg px-3 py-2"
+            [placeholder]="'Enter task description' | translate"
+          ></textarea>
+        </div>
 
-          <div>
-            <label class="block text-sm font-medium mb-1">Status</label>
-            <select
-              [(ngModel)]="taskService.taskData.status"
-              name="status"
-              required
-              class="w-full border border-gray-300 rounded-lg px-3 py-2"
-            >
-              <option value="todo">To Do</option>
-              <option value="in-progress">In Progress</option>
-              <option value="done">Done</option>
-            </select>
-          </div>
-
-          <button
-            type="submit"
-            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+        <div>
+          <label class="block text-sm font-medium mb-1">{{ 'Status' | translate }}</label>
+          <select
+            [(ngModel)]="taskService.taskData.status"
+            name="status"
+            required
+            class="w-full border border-gray-300 rounded-lg px-3 py-2"
           >
-            Save Task
-          </button>
-        </form>
-      </div>
+            <option value="todo">{{ 'To Do' | translate }}</option>
+            <option value="in-progress">{{ 'In Progress' | translate }}</option>
+            <option value="done">{{ 'Done' | translate }}</option>
+          </select>
+        </div>
+
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+          {{ 'Save Task' | translate }}
+        </button>
+      </form>
     </div>
   </div>
 </div>

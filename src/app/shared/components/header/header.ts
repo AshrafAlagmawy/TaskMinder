@@ -3,16 +3,19 @@ import { CommonModule } from '@angular/common';
 import { SearchBar } from '../search-bar/search-bar';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageService } from '../../../core/services/language';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, SearchBar, RouterLink],
+  imports: [CommonModule, SearchBar, RouterLink, TranslateModule],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
 export class Header {
   private readonly _AuthService = inject(AuthService);
+  private readonly _LanguageService = inject(LanguageService);
   private elementRef = inject(ElementRef<HTMLElement>);
 
   showMenu = signal<boolean>(false);
@@ -32,5 +35,9 @@ export class Header {
     if (!clickInside && this.showMenu()) {
       this.showMenu.set(false);
     }
+  }
+
+  changeLanguage(): void {
+    this._LanguageService.changeLanguage();
   }
 }

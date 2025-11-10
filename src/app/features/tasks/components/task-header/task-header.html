@@ -1,23 +1,25 @@
 <!-- Header -->
 <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-8 gap-4 sm:gap-0">
   <h1 class="text-2xl sm:text-3xl font-poppins font-bold text-gray-900 text-center sm:text-left">
-    Tasks
+    {{ 'Tasks' | translate }}
   </h1>
 
   <div class="flex flex-wrap justify-center sm:justify-end items-center gap-3">
-    <button
-      class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
-      aria-label="Undo"
-    >
-      <img src="./assets/icons/Frame (3).svg" alt="Back icon" />
-    </button>
+    <div class="flex gap-3 rtl:flex-row-reverse">
+      <button
+        class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
+        aria-label="Undo"
+      >
+        <img src="./assets/icons/Frame (3).svg" alt="Back icon" />
+      </button>
 
-    <button
-      class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
-      aria-label="Redo"
-    >
-      <img src="./assets/icons/Frame (2).svg" alt="Next icon" />
-    </button>
+      <button
+        class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
+        aria-label="Redo"
+      >
+        <img src="./assets/icons/Frame (2).svg" alt="Next icon" />
+      </button>
+    </div>
 
     <button
       class="p-2 hover:bg-white rounded-lg transition-colors shadow-sm bg-white"
@@ -34,11 +36,11 @@
     </button>
 
     <button
-      appNewTask
+      AdminOnly
       (click)="taskService.openModal()"
       class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium shadow-sm"
     >
-      <span>New task</span>
+      <span>{{ 'New task' | translate }}</span>
       <img src="./assets/icons/plus icon.svg" alt="Plus Icon" />
     </button>
   </div>

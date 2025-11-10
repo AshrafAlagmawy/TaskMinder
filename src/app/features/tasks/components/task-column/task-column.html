@@ -6,8 +6,9 @@
       {{ title }}
     </h2>
     <span class="text-lg font-semibold ms-auto">
-      @if(tasksLength() === 0) {( No tasks found )} @else if(tasksLength() === 1){ (
-      {{ tasksLength() }} Task ) } @else{ ( {{ tasksLength() }} Tasks )}
+      @if (tasksLength() === 0) { ( {{ 'TASKS.NONE' | translate }} ) } @else if (tasksLength() ===
+      1) { ( {{ 'TASKS.ONE' | translate : { count: tasksLength() } }} ) } @else { (
+      {{ 'TASKS.MANY' | translate : { count: tasksLength() } }} ) }
     </span>
   </div>
   <div

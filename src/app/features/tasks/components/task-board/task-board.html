@@ -8,36 +8,36 @@
     cdkDropListGroup
   >
     <app-task-column
-      title="To do"
+      [title]="'TASKS.TODO_TITLE' | translate"
       titleColor="var(--todo-task-title-color)"
       icon="./assets/icons/Card status icon (1).svg"
       backgroundColor="var(--todo-task-background-color)"
       taskStatus="todo"
-      emptyMsg="No tasks yet"
+      [emptyMsg]="'TASKS.EMPTY_MSG_TODO' | translate"
       [dropListId]="'todo'"
       [connectedDropLists]="dropListIds()"
       (taskDropped)="onTaskDrop($event)"
     ></app-task-column>
 
     <app-task-column
-      title="In progress"
+      [title]="'TASKS.IN_PROGRESS_TITLE' | translate"
       titleColor="var(--in-progress-task-title-color)"
       icon="./assets/icons/Card status icon (2).svg"
       backgroundColor="var(--in-progress-task-background-color)"
       taskStatus="in-progress"
-      emptyMsg="No tasks in progress"
+      [emptyMsg]="'TASKS.EMPTY_MSG_IN_PROGRESS' | translate"
       [dropListId]="'in-progress'"
       [connectedDropLists]="dropListIds()"
       (taskDropped)="onTaskDrop($event)"
     ></app-task-column>
 
     <app-task-column
-      title="Done"
+      [title]="'TASKS.DONE_TITLE' | translate"
       titleColor="var(--done-task-title-color)"
       icon="./assets/icons/Card status icon.svg"
       backgroundColor="var(--done-task-background-color)"
       taskStatus="done"
-      emptyMsg="All tasks done 🎉"
+      [emptyMsg]="'TASKS.EMPTY_MSG_DONE' | translate"
       [dropListId]="'done'"
       [connectedDropLists]="dropListIds()"
       (taskDropped)="onTaskDrop($event)"

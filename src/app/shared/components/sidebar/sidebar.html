@@ -1,7 +1,7 @@
 <div class="sidebar text-black d-flex flex-column vh-100">
   <div routerLink="/" class="logo p-3 d-flex align-items-center gap-2 mb-3">
     <img src="/assets/icons/Rectangle 11 (Stroke).png" alt="TaskMinder Logo" />
-    <span class="fs-5 fw-semibold">TaskMinder.</span>
+    <span class="fs-5 fw-semibold">{{ 'TaskMinder.' | translate }}</span>
   </div>
 
   <!-- Navigation -->
@@ -13,7 +13,7 @@
       class="nav-link rounded mb-3 d-flex align-items-center gap-2"
     >
       <img src="./assets/icons/Sidebar link icon.png" alt="Projects Icon" />
-      <span>Dashboard</span>
+      <span>{{ 'Dashboard' | translate }}</span>
     </a>
 
     <a
@@ -22,7 +22,7 @@
       class="nav-link rounded mb-3 d-flex align-items-center gap-2"
     >
       <img src="./assets/icons/Sidebar link icon (1).png" alt="Projects Icon" />
-      <span>Projects</span>
+      <span>{{ 'Projects' | translate }}</span>
     </a>
 
     <a
@@ -31,7 +31,7 @@
       class="nav-link rounded mb-3 d-flex align-items-center gap-2"
     >
       <img src="./assets/icons/Sidebar link icon (2).png" alt="Projects Icon" />
-      <span>Tasks</span>
+      <span>{{ 'Tasks' | translate }}</span>
     </a>
 
     <a
@@ -40,7 +40,7 @@
       class="nav-link rounded mb-3 d-flex align-items-center gap-2"
     >
       <img src="./assets/icons/Sidebar link icon (3).png" alt="Projects Icon" />
-      <span>Calendar</span>
+      <span>{{ 'Calendar' | translate }}</span>
     </a>
   </nav>
 
@@ -49,10 +49,10 @@
     <button
       (click)="logOut()"
       routerLink="/login"
-      class="btn logout btn-link text-decoration-none d-flex align-items-center gap-2 w-100"
+      class="rtl:flex-row-reverse btn logout btn-link text-decoration-none d-flex align-items-center gap-2 w-100"
     >
       <img src="./assets/icons/Frame.png" alt="Projects Icon" />
-      <span>Log out</span>
+      <span>{{ 'Log out' | translate }}</span>
     </button>
   </div>
 </div>

@@ -1,13 +1,15 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-role',
-  imports: [FormsModule],
+  imports: [TranslateModule, FormsModule],
   templateUrl: './user-role.html',
   styleUrl: './user-role.scss',
 })
 export class UserRole {
+  constructor(private translate: TranslateService) {}
   showModal = signal<boolean>(true);
   role: string = '';
 
