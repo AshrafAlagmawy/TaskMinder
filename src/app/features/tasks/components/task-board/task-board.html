@@ -15,7 +15,7 @@
       taskStatus="todo"
       emptyMsg="No tasks yet"
       [dropListId]="'todo'"
-      [connectedDropLists]="dropListIds"
+      [connectedDropLists]="dropListIds()"
       (taskDropped)="onTaskDrop($event)"
     ></app-task-column>
 
@@ -27,7 +27,7 @@
       taskStatus="in-progress"
       emptyMsg="No tasks in progress"
       [dropListId]="'in-progress'"
-      [connectedDropLists]="dropListIds"
+      [connectedDropLists]="dropListIds()"
       (taskDropped)="onTaskDrop($event)"
     ></app-task-column>
 
@@ -39,7 +39,7 @@
       taskStatus="done"
       emptyMsg="All tasks done 🎉"
       [dropListId]="'done'"
-      [connectedDropLists]="dropListIds"
+      [connectedDropLists]="dropListIds()"
       (taskDropped)="onTaskDrop($event)"
     ></app-task-column>
   </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TaskColumn } from '../task-column/task-column';
@@ -19,7 +19,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 export class TaskBoard {
   constructor(public taskService: TaskService) {}
 
-  dropListIds = ['todo', 'in-progress', 'done'];
+  dropListIds = signal<string[]>(['todo', 'in-progress', 'done']);
 
   onTaskDrop(data: { event: CdkDragDrop<any[]>; status: string }) {
     const event = data.event;
